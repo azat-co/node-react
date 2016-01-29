@@ -1,0 +1,23 @@
+{
+  "name": "MyNewNodeProject",
+  "version": "0.1.0",
+  "description": "I am creating a node project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "Library",
+    "Node",
+    "Does",
+    "Stuff"
+  ],
+  "author": "Adron Hall",
+  "license": "Apache 2.0",
+  "devDependencies": {
+    "mocha": "^2.2.1"
+  },
+  "dependencies": {
+    "lodash": "^3.5.0"
+  }
+}
