@@ -353,7 +353,7 @@ NumberLong: a 64 bit signed integer
 
 ## Questions and Exercises
 
-:+1:
+❓🙋:+1:
 
 ---
 

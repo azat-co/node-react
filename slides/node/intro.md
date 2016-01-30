@@ -143,6 +143,18 @@ Instructor: Azat Mardan
 
 ---
 
+## Non-blocking I/O
+
+
+
+---
+
+It's kind of a big deal
+
+![inline](images/event-loop2.png)
+
+---
+
 ### Disadvantages of Node.js
 
 * Devs have to think in async and functional+prototypal
@@ -193,11 +205,11 @@ It turned out for web-based application, single-threaded asynchronous event-loop
 
 ---
 
-![inline](images/threaded.png)
+![inline](images/threaded3.png)
 
 ---
 
-![inline](images/event-loop.png)
+![inline](images/non-blocking.png)
 
 ---
 
@@ -304,7 +316,7 @@ LibUv performs, mantains and manages all the io and events in the event pool. ( 
 
 ### Node Core Architecture
 
-![inline](images/Node-Architecture.png)
+![inline](images/node-arc.png)
 
 ---
 
@@ -332,6 +344,23 @@ LibUv performs, mantains and manages all the io and events in the event pool. ( 
 
 ^Kraken (not a real framework) actually builds an Express app using config files  
 Meteor is the only framework here that actually uses the same JS files on both sides
+
+---
+
+## Node Program
+
+---
+
+# Effective Learning
+
+## 50% workshops +
+## 50% lectures +
+## 50% Q&A/office hours
+(yes, we deliver 150%!)
+
+---
+
+workshops = coding + collaboration + pair programming + solo programming + discussions + reading + solving problems (✋ if stuck)
 
 ---
 
@@ -389,6 +418,12 @@ React Day:
 ## Questions and Exercises
 
 Write them down and ask at the end of the lesson:
-you'll have 5 open frames to ask questions.
+you'll have 5 open frames to ask questions. Use them fully!
 
 :+1:
+
+
+
+No workshop for this lesson. 😁
+
+---
