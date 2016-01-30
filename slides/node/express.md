@@ -277,4 +277,5 @@ Registry of hand-picked Node frameworks: [nodeframework.com](http://nodeframewor
 
 ```
 $ npm i -g expressworks
+$ npm i -g meanworks
 ```
