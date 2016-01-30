@@ -378,7 +378,7 @@ Node.js Day:
 
 Node.js Day:
 
-* 1:00-2:00 Lectures: Express, MongoDB
+* 1:00-2:00 Lectures: MongoDB, Express
 * 2:00-3:00: Workshop
 * 3:00-3:15 Break
 * 3:15-4 Lectures: Meteor

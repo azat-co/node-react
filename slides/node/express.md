@@ -241,6 +241,16 @@ server.listen(app.get('port'), function () {
 
 ---
 
+# DEMO
+
+💻
+
+RESTful API
+
+<https://github.com/azat-co/rest-api-express>
+
+---
+
 ### Alternatives
 
 
@@ -266,5 +276,5 @@ Registry of hand-picked Node frameworks: [nodeframework.com](http://nodeframewor
 
 
 ```
-$ npm install -g expressworks
+$ npm i -g expressworks
 ```

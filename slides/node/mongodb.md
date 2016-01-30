@@ -2,7 +2,7 @@ footer: © Node Program, 2016
 slidenumbers: true
 
 # Node Program
-## Lesson 3: MongoDB and Mongoose Deep Dive
+## MongoDB
 
 ![inline 70%](images/np-logo120.png)
 
@@ -121,6 +121,16 @@ Useful MongoDB Shell commands:
 * `> db.messages.update({name:"John"},{$set:{message:"bye"}});`
 * `> db.messages.find({name:"John"});`
 * `> db.messages.remove({name:"John"});`
+
+---
+
+# DEMO
+
+^demo mongo shell
+
+---
+
+MongoDB native driver vs. MongoDB Shell
 
 ---
 

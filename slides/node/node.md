@@ -2,7 +2,7 @@ footer: © Node Program, 2016
 slidenumbers: true
 
 # Node Program
-## Lesson 1: Node Basics
+## Node Basics
 
 ![inline 70%](images/np-logo120.png)
 
