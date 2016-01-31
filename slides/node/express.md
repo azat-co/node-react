@@ -260,13 +260,588 @@ RESTful API
 * Hapi
 * Restify
 
+---
+
 Registry of hand-picked Node frameworks: [nodeframework.com](http://nodeframework.com)
+
+---
+
+# Building a RESTful API
+
+---
+
+### Traditional Web App
+
+![inline](images/traditional-web.png)
+
+---
+
+### API + AJAX/XHR Web App
+
+![inline](images/rest-web.png)
+
+---
+
+### Node, SPAs and REST
+
+![inline](images/Node_soa_rest.png)
+
+---
+
+### API Decomposition
+
+![inline](images/API_decomposition.png)
+
+---
+
+### Microservices
+
+![inline](images/Microservices.png)
+
+---
+
+### REST Basics
+
+REpresentational State Transfer (REST) is an architectural pattern for developing network applications
+
+REST systems aim to keep things simple when connecting to and exchanging data between machines
+
+---
+
+### Why HTTP?
+
+HTTP is the ideal protocol for REST, given its stateless nature and client-server architecture
+
+* REST is far simpler compared to Remote Procedure Calls (RPC) and Web Services (SOAP, UDDI, etc)
+* RPCs and Web services rely on complex vocabularies for communication
+* Each new operation is a new vocabulary entry, increasing code complexity
+
+---
+
+### REST Verbs
+
+REST uses HTTP requests (and verbs) for CRUD operations
+
+* GET
+* PUT
+* POST
+* DELETE
+
+---
+
+### REST Verbs
+
+And sometimes...
+
+* PATCH
+* HEAD
+* OPTIONS
+
+---
+
+### Common Endpoints
+
+```
+GET    /tickets     - Retrieve a list of tickets
+GET    /tickets/12  - Retrieve a specific ticket
+POST   /tickets     - Create a new ticket
+PUT    /tickets/12  - Update ticket #12
+DELETE /tickets/12  - Delete ticket #12
+PATCH   /tickets/12  - Partially update ticket #12
+OPTIONS /tickets/12  - What can I do to ticket #12?
+HEAD    /tickets/12  - What headers would I get if I tried to get ticket #12?
+```
+
+---
+
+### "Resources"
+
+Resources are entities that can be stored on a computer, such as:
+
+* Files
+* Database entries
+* Processed output from functions
+
+---
+
+### "Resources"
+
+REST uses HTTP requests and responses to provide **representations** of resources
+
+For example, the current version of a file available for download via its URL is a representation of a file resource
+
+Modifying a resource, such as changing the contents of a file or deleting it, is also a resource state that can be represented via requests and responses in a REST system
+
+---
+
+## Express Examples
+
+---
+
+### GET
+
+To allow retrieval by id...
+
+```js
+app.get('/users/:id', function (req, res) {
+  var id = req.params.id;
+  // code to retrieve a single user
+  res.send(user);
+});
+```
+
+---
+
+### GET
+
+GET handlers can also be used to retrieve a collection of resources
+
+```js
+app.get('/users', function (req, res) {
+  // code to retrieve multiple users
+  res.send(users);
+});
+```
+
+---
+
+### POST
+
+To create a resource...
+
+```js
+app.post('/users', function (req, res) {
+  var username = req.body.username;
+  var email = req.body.email;
+  // ...
+  // code to create a new user
+  res.send(user);
+});
+```
+
+Or maybe just send back the endpoint to get the user...
+
+```js
+res.send('/api/user/' + user.id);
+```
+
+---
+
+### PUT
+
+To update a resource (or create if it doesn't exist, perhaps)...
+
+```js
+app.put('/users/:id', function (req, res) {
+  var id = req.params.id;
+  // check if the user exists
+  ...
+  if (exists) {
+    // code to modify the user
+  } else {
+    // code to create the user
+  }
+  res.send(user);
+});
+```
+
+---
+
+### DELETE
+
+To delete a resource, create a DELETE handler for the desired URI
+
+```js
+app.delete('/users/:id', function (req, res) {
+  var id = req.params.id;
+  // code to delete the user
+  res.send(user); // or maybe the URL to create a new user?
+});
+```
+
+Note: `del` is [deprecated](https://github.com/jspears/mers/issues/33).
+
+---
+
+### HTTP Requests
+
+A client's HTTP request is accessible from within routing handlers
+
+It is the first argument in the handler's callback
+
+```js
+app.get('/users/:id', function (req, res) {
+  // 'req' is the request object
+});
+```
+
+Note: access to the request object grants insight into the client's HTTP request, providing data on the request header, body, et al.
+
+---
+
+### Accessing Route Parameters
+
+A URI segment can be parameterized by prefixing it with a semi-colon
+
+```js
+app.get('/users/:id/:another/:segment', function (req, res) { ... });
+```
+
+---
+
+### Handlers Signatures
+
+* `function(request, response, next) {}`: request handler signature
+* `function(error, request, response, next) {}`: error handler signature
+
+---
+
+### URL Parameters
+
+These dynamic parameters can then be accessed via the request's **params** object
+
+GET /users/:id
+
+```
+req.params.id;
+```
+
+---
+
+### URL Parameters
+
+GET /users/:id/:some/:filter
+
+```
+req.params.id;
+req.params.some;
+req.params.filter;
+```
+
+---
+
+### Query Strings
+
+Express converts a URL's query string into JSON
+
+It can be accessed via the request's **query** object GET http://localhost:3000/?name=Bruce+Wayne&age=40&occupation=Batman
+
+
+```js
+req.query.name;       // "Bruce Wayne"
+req.query.age;        // "40"
+req.query.occupation; // "Batman"
+```
+
+---
+
+### Request Body
+
+Enable the `json()` and `urlencoded()` middleware to convert raw form data into JSON
+
+```
+$ npm install body-parser --save
+```
+
+---
+
+### Request Body
+
+Import middleware:
+
+```
+var bodyParser = require('body-parser')
+```
+
+Parse `application/json`
+
+```
+app.use(bodyParser.json());
+```
+
+Parse `application/x-www-form-urlencoded`
+
+```
+app.use(bodyParser.urlencoded({extended: false}))
+```
+
+^Extended false is querystring and true is qs. The "extended" syntax allows for rich objects and arrays to be encoded into the URL-encoded format, allowing for a JSON-like experience with URL-encoded
+
+---
+
+### Accessing Form Data
+
+Form data is then accessible via the request's **body** object (ulrencoded)
+
+```js
+// POST name=Bruce+Wayne&age=40&occupation=Your+Average+Businessman
+
+req.body.name;
+req.body.age;
+req.body.occupation;
+```
+
+---
+
+### File Uploads
+
+File uploads from web forms (multipart/form-data) can be parsed with these libraries:
+
+* <https://github.com/expressjs/multer>
+* <https://github.com/yahoo/express-busboy>
+* <https://github.com/mscdex/connect-busboy>
+* <https://github.com/andrewrk/node-multiparty>
+
+---
+
+### Parsing JSON
+
+Parse various different custom JSON types as JSON
+
+```js
+app.use(bodyParser.json({ type: 'application/*+json' }))
+```
+
+---
+
+### Parsing Buffer
+
+Parse some custom thing into a Buffer
+
+```js
+app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
+```
+
+---
+
+### Parsing HTML
+
+Parse an HTML body into a string
+
+```js
+app.use(bodyParser.text({ type: 'text/html' })
+```
+
+---
+
+### HTTP Verbs and Routes
+
+* `app.get(urlPattern, requestHandler[, requestHandler2, ...])`
+* `app.post(urlPattern, requestHandler[, requestHandler2, ...])`
+* `app.put(urlPattern, requestHandler[, requestHandler2, ...])`
+* `app.delete(urlPattern, requestHandler[, requestHandler2, ...])`
+* `app.all(urlPattern,  requestHandler[, requestHandler2, ...])`
+* `app.param([name,] callback)`:
+* `app.use([urlPattern,] requestHandler[, requestHandler2, ...])`
+
+---
+
+### Request
+
+* `request.params`: parameters middlware
+* `request.param`: extract one parameter
+* `request.query`: extract query string parameter
+* `request.route`: return route string
+* `request.cookies`: cookies, requires cookieParser
+* `request.signedCookies`: signed cookies, requires `cookie-parser`
+* `request.body`: payload, requires `body-parser`
+
+---
+
+### Request Header Shortcuts
+
+* `request.get(headerKey)`: value for the header key
+* `request.accepts(type)`: checks if the type is accepted
+* `request.acceptsLanguage(language)`: checks language
+* `request.acceptsCharset(charset)`: checks charset
+* `request.is(type)`: checks the type
+* `request.ip`: IP address
+
+^These shortcuts a.k.a. sugarcoating
+
+---
+
+### Request Header Shortcuts
+
+* `request.ips`: IP addresses (with trust-proxy on)
+* `request.path`: URL path
+* `request.host`: host without port number
+* `request.fresh`: checks freshness
+* `request.stale`: checks staleness
+* `request.xhr`: true for AJAX-y requests
+
+---
+
+### Request Header Shortcuts
+
+* `request.protocol`: returns HTTP protocol
+* `request.secure`: checks if protocol is `https`
+* `request.subdomains`: array of subdomains
+* `request.originalUrl`: original URL
+
+---
+
+### HTTP Responses
+
+The response object is also accessible via routing handlers in Express
+
+It is the second argument in the handler's callback
+
+```js
+app.get('/users/:id', function (req, res) {
+  // 'res' is the response object
+});
+```
+
+The response object can be used to modify an HTTP response before sending it out
+
+---
+
+### Express Response Method
+
+
+* `response.redirect(status, url)`: redirect request
+* `response.send(status, data)`: send response
+* `response.json(status, data):` send JSON and force proper headers
+* `response.sendfile(path, options, callback)`: send a file
+* `response.render(templateName, locals, callback)`: render a template
+* `response.locals`: pass data to template
+
+---
+
+### HTTP Status Codes
+
+To specify a status code, use the response object's **status** function
+
+```js
+app.get('/user/:id', function (req, res) {
+  // logic to check for user
+  if (!exists) {
+    res.status(404);
+  } else if (authorized) {
+    res.status(200);
+  } else {
+    res.status(401);
+  }
+  // ...
+});
+```
+
+---
+
+### HTTP Status Codes
+
+* 2XX: for successfully processed requests
+* 3XX: for redirections or cache information
+* 4XX: for client-side errors
+* 5XX: for server-side errors
+
+Note: for 3xx status codes, the client must take additional action following the completion of the current request
+
+---
+
+
+### Sending a Response
+
+Use the response object's **send** function to send the client a response
+
+```js
+app.get('...', function (req, res) {
+  res.send('Hello World!');
+});
+```
+
+---
+
+### Sending a Response
+
+The content-type is determined given the type of argument passed
+
+```js
+res.send('Hello World!');       // Content-type: text/plain
+res.send([ 5, 7, 9 ]);          // Content-type: application/json
+res.send({ name: 'John Doe' }); // Content-type: application/json
+```
+
+---
+
+### Sending a Response
+
+The content-type can also be hardcoded
+
+```js
+res.set('Content-Type', 'text/plain');
+res.send('Just regular text, no html expected!');
+```
+
+---
+
+### Sending an Empty Response
+
+```js
+res.status(404).end();
+```
+
+---
+
+### Sessions
+
+HTTP is a stateless protocol - information about a client is not retained over subsequent requests
+
+Use sessions to overcome this problem
+
+Enable the `cookieParser` and `session` middlewares to process cookies
+
+---
+
+### Sessions
+
+```js
+app.use(express.cookiesParser());
+app.use(express.session({ secret: 'notastrongsecret' }));
+```
+
+The session is now accessible via `request.session`
+
+```js
+app.get('...', function (req, res) {
+  var session = req.session;
+});
+```
+
+
+---
+
+### Redis Store with Express
+
+```
+$ npm install connect-redis express-session
+```
+
+```js
+var session = require('express-session'),
+  RedisStore = require('connect-redis')(session);
+
+app.use(session({
+  store: new RedisStore(options),
+  secret: 'keyboard cat'
+}));
+```
+
+---
+
+### Load-balancing
+
+* Clusters
+* Nginx
+* HAProxy
+* Varnish
 
 ---
 
 ## Questions and Exercises
 
-:+1:
+❓🙋:+1:
 
 ---
 
