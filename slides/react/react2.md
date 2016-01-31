@@ -47,7 +47,7 @@ render: function() {
 
 This example renders list of menu items and uses Twitter Bootstrap.
 
-![inline](menu.png)
+![inline](images/menu.png)
 
 The source code: `/menu` or <http://plnkr.co/edit/dyTMGBoTIXckKediycQl?p=preview>.
 
@@ -127,7 +127,7 @@ var Content = React.createClass({
 
 If the prop is missing the default value is used:
 
-![inline](default-props.png)
+![inline](images/default-props.png)
 
 Source code: `/default-props` or <http://plnkr.co/edit/7JC7qg3Ka87i5ObETV7r?p=preview>.
 
@@ -396,7 +396,7 @@ var Content = React.createClass({
 
 The three elements will have the same functionality (loads the ifame):
 
-![inline](mixins.png)
+![inline](images/mixins.png)
 
 Note: You cannot use React.js mixins with ES6 classes.
 
@@ -725,7 +725,7 @@ Source code: `/style` or <http://plnkr.co/edit/8OjJ1vBPH7sN9pNf065G?p=preview>.
 
 Stack: React.js + jQuery + Express + MongoDB
 
-Source code: `/board-react`. To run the project:
+Source code: <http://bit.ly/1StYYYy>. To run the project:
 
 ```
 $ npm install -g gulp
@@ -735,3 +735,22 @@ $ gulp
 Navigate to <http://localhost:5000>
 
 (Dependencies and `node_modules` are included.)
+
+---
+
+<http://bit.ly/1StYYYy>
+
+---
+
+## Questions and Exercises
+
+❓✋:+1:
+
+
+---
+
+## Workshop 🔨💻😁
+
+```
+$ npm i -g thinking-in-react
+```

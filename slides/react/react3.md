@@ -11,9 +11,16 @@ Last updated: Jan 2016
 
 ---
 
-### React and Meteor
+### Project: RPS Game with Meteor and React
 
 <https://github.com/azat-co/react/tree/master/ch4/rock-paper-scissors>
+
+---
+
+## Project: Chat with Meteor and React
+
+
+<http://bit.ly/1StZ8PE>
 
 ---
 
@@ -82,3 +89,40 @@ var ReactTestUtils = require('react-addons-test-utils')
 ### Project: Nile Store (React+ Webpack + ES6)
 
 <https://github.com/azat-co/react/tree/master/ch10/nile>
+
+---
+
+![inline](images/reactquickly.jpg)
+
+
+---
+
+## 19 Videos
+
+<http://bit.ly/1StZVjw>
+
+---
+
+## Code
+
+<https://github.com/azat-co/react>
+
+---
+
+## Buy
+
+<https://www.manning.com/books/react-quickly>
+
+---
+
+## Questions and Exercises
+
+❓✋:+1:
+
+---
+
+## Office Hours and Individual Tracks
+
+* Deployment to AWS
+* RESTful API with Express and MongoDB
+* SPA with React and Meteor

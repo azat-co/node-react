@@ -938,3 +938,13 @@ The `/did-mount` folder.
 ### Project: Timer
 
 ![inline](images/timer.png)
+
+---
+
+<http://bit.ly/1StYTnF>
+
+---
+
+## Questions and Exercises
+
+😕❓➡️😸
