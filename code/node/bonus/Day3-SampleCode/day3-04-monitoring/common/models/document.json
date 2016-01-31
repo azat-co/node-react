@@ -1,0 +1,31 @@
+{
+  "name": "document",
+  "plural": "documents",
+  "base": "PersistedModel",
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "created_by": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "string"
+    },
+    "size": {
+      "type": "string"
+    },
+    "date_created": {
+      "type": "date"
+    },
+    "last_modified": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

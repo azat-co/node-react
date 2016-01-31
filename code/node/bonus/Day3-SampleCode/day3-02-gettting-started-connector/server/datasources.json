@@ -1,0 +1,15 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "casample": {
+    "name": "casample",
+    "connector": "mysql",
+    "host": "casample.cgu9lfm2rbnf.us-west-2.rds.amazonaws.com",
+    "port": 3306,
+    "database": "casample",
+    "username": "casample",
+    "password": "casample"
+  }
+}

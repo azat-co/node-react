@@ -111,9 +111,11 @@ app.use(function middleware2(req, res, next) {
 Middleware are executed in the order specified:
 
 ```js
-app.use(express.logger('dev'));
-app.use(express.basicAuth('test', 'pass'));
-app.use(express.json());
+var logger = require('morgan')
+var bodyParser = require('body-parser')
+...
+app.use(logger('dev'))
+app.use(bodyParser.json())
 ```
 
 ---
@@ -245,9 +247,11 @@ server.listen(app.get('port'), function () {
 
 💻
 
-RESTful API
 
-<https://github.com/azat-co/rest-api-express>
+RESTful API
+Core http module API: <http://bit.ly/1StXFsG>
+
+Express: <https://github.com/azat-co/rest-api-express>
 
 ---
 

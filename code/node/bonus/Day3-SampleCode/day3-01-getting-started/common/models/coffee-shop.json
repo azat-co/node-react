@@ -1,0 +1,28 @@
+{
+  "name": "CoffeeShop",
+  "plural": "CoffeeShops",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "properties": {
+    "ShopName": {
+      "type": "string",
+      "required": true
+    },
+    "Address": {
+      "type": "string"
+    },
+    "City": {
+      "type": "string"
+    },
+    "State": {
+      "type": "string"
+    },
+    "Zip": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

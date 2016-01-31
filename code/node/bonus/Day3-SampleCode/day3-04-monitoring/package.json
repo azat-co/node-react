@@ -1,0 +1,36 @@
+{
+  "name": "profiling-app",
+  "version": "0.0.1",
+  "main": "server/server.js",
+  "scripts": {
+    "pretest": "jshint ."
+  },
+  "dependencies": {
+    "compression": "^1.0.3",
+    "errorhandler": "^1.1.1",
+    "loopback": "^2.0.0",
+    "loopback-boot": "^2.0.0",
+    "loopback-datasource-juggler": "^2.7.0",
+    "mathjs": "~1.0.1",
+    "serve-favicon": "^2.0.1",
+    "loadtest": "^1.2.2"
+  },
+  "optionalDependencies": {
+    "loopback-explorer": "^1.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/strongloop/profiler-demo-app.git"
+  },
+  "bundleDependencies": [
+    "compression",
+    "errorhandler",
+    "loadtest",
+    "loopback",
+    "loopback-boot",
+    "loopback-datasource-juggler",
+    "loopback-explorer",
+    "mathjs",
+    "serve-favicon"
+  ]
+}
