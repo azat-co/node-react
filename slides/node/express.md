@@ -11,11 +11,9 @@ Last updated: Jan 2016
 
 ---
 
-## Express
+### Express
 
-Express is the most popular web application framework for Node
-
-It is easy to work with as it ties into Node's functional paradigm
+Express is the most popular web application framework for Node. It is easy to work with as it ties into Node's functional paradigm.
 
 * Deliver static content (or consider using nginx)
 * Modularize business logic
@@ -30,10 +28,13 @@ It is easy to work with as it ties into Node's functional paradigm
 $ npm install express --save
 ```
 
+```
+$ npm install express@4.2.0 --save
+```
 ---
 
 
-### Installing Scaffolding
+## Installing Scaffolding
 
 Install Express.js command-line generator:
 
@@ -47,33 +48,51 @@ $ npm install -g express-generator
 
 ```
 $ express todo-list-app
+$ cd todo-list-app
+$ npm install
+$ node app
 ```
 
 ^Go through all aspects of the generated app and point out various features. Specifically talk about app.js and how it abstracts away some things for testing
 
+---
+
+### Structure
+
 * `app.js`: main file, houses the embedded server and application logic
-* `public/`: contains static files to be served by the embedded server
-* `routes/`: houses custom routing for the embedded server
-* `views/`:  contains templates that can be processed by a template engine
+* `/public`: contains static files to be served by the embedded server
+* `/routes`: houses custom routing for the embedded server
+* `/views`:  contains templates that can be processed by a template engine
 
 ---
 
-### Configuring Express
+## app.js
+
+1. Imports and instantiations
+2. Configurations
+3. Middleware
+4. Routes
+5. Bootup
+
+---
+
+## Configuring Express
 
 The Express server needs to be configured before it can start
 
 Manage configuration via the `set` method:
 
 ```
-var app = express();
-app.set('port', process.env.PORT || 3000);
-app.set('views', 'views'); // the directory the templates are stored in
-app.set('view engine', 'jade');
+var express = require('express')
+var app = express()
+app.set('port', process.env.PORT || 3000)
+app.set('views', 'templates') // The directory the templates are stored in
+app.set('view engine', 'jade')
 ```
 
 ---
 
-## Node.js Middleware pattern
+## Node.js Middleware Pattern
 
 ---
 
@@ -83,25 +102,56 @@ Middleware pattern is a series of processing units connected together, where the
 
 ```js
 function(args, next) {
-  next(output) // error or real output
+  // ... Run some code
+  next(output) // Error or real output
 }
 ```
 
 ---
 
-### Connect Middleware
+## Continuity
+
+Request is coming from a client and response is sent back to the client.
+
+```
+request->middleware1->middleware2->...middlewareN->route->response
+```
+
+---
+
+### Organizing Code
+
+`database` in `app.js`, but we need it in `routes/users.js` where our `/users` routes are located
+
+How to pass the `database` reference? Something like this?
+
+```
+var users = require('./routes/users.js')(database)
+```
+
+There is a better way!
+
+---
+
+### Connect Framework
+
+Express leverages the Connect framework to provide the middleware functionality. Middleware are used to manage how a request should be handled.
+
+---
+
+### Applying Connect/Express Middleware
 
 Example:
 
 ```js
-app.use(function middleware1(req, res, next) {
-  // middleware 1
-  next();
-});
-app.use(function middleware2(req, res, next) {
-  // middleware 2
-  next();
-});
+var express = require('express')
+var app = express()
+//... Define middleware1-N
+app.use(middleware1)
+app.use(middleware2)
+...
+app.use(middlewareN)
+...
 ```
 
 ---
@@ -118,28 +168,57 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 ```
 
+
+---
+
+### Two Categories of Express Middleware 
+
+1. npm modules, e.g., `body-parser`
+2. Custom middleware
+
 ---
 
 ### Creating Middleware
 
-Custom middleware is easy to create:
+Custom middleware is easy to create with a reference:
 
 ```js
-app.use(function (req, res, next) {
-  // modify req or res
-  // execute the callback when done
-  next();
-});
+var middleware = function (request, response, next) {
+  // Modify request or response
+  // Execute the callback when done
+  next()
+}
+app.use(middleware)
 ```
 
 ---
 
-## Connect Framework
+### Creating Middleware
 
-Express leverages the Connect framework to provide middleware
-functionality.
+Or with anonymous function definition:
 
-Middlewares are used to manage how a request should be handled.
+```js
+app.use(function (request, response, next) {
+  // Modify request or response
+  // Execute the callback when done
+  next()
+})
+```
+
+---
+
+### Passing References
+
+`request` is **always** the same object in the lifecycle of a single client request to the Experss server
+
+This solves the database reference problem:
+
+```js
+app.use(function (request, response, next) {
+  request.database = database
+  next()
+})
+```
 
 ---
 
