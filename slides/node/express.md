@@ -22,6 +22,30 @@ Express is the most popular web application framework for Node. It is easy to wo
 
 ---
 
+### DEMO
+
+Core http module API: <http://bit.ly/1StXFsG> 
+
+:computer: :confused:
+
+---
+
+# With Express you can develop APIs faster!
+
+---
+
+### Express vs. http
+
+* URL params and query strings parsing
+* Automatic response headers
+* Routes and better code organization
+* Myriads of plugins (called middleware)
+* Request body parsing (with a module)
+* Authentication, validation, session and more! (with modules)
+
+
+---
+
 ### Installing Dependency
 
 ```
@@ -29,7 +53,7 @@ $ npm install express --save
 ```
 
 ```
-$ npm install express@4.2.0 --save
+$ npm install express@4.13.3 --save
 ```
 ---
 
@@ -281,10 +305,10 @@ Setting the `view engine` variable to `jade` for instance, would trigger
 the following function call internally
 
 ```js
-app.set('view engine', 'jade'); // shorthand
+app.set('view engine', 'jade') // Shorthand
 
-// does the same as the above
-app.engine('jade', require('jade').__express);
+// Does the same as the above
+app.engine('jade', require('jade').__express)
 ```
 
 ---
@@ -295,26 +319,25 @@ Custom callbacks can be defined to parse templates
 
 ```js
 app.engine([format], function (path, options, callback) {
-  // template parsing logic goes here
+  // Template parsing logic goes here
 });
 ```
 
-Note: custom callbacks are useful if the template engine doesn't export
-  an **__express** function
+Note: custom callbacks are useful if the template engine doesn't export an **__express** function
 
 ---
 
-### Running Express
+### Express Bootup
 
 ```js
 var http = require('http'),
-    express = require('express');
+    express = require('express')
 
-var app = express();
+var app = express()
 
-// ...
+// ... Configurations, middleware and routes
 
-var server = http.createServer(app);
+var server = http.createServer(app)
 server.listen(app.get('port'), function () {
   // Do something... maybe log some info?
 });
@@ -322,32 +345,39 @@ server.listen(app.get('port'), function () {
 
 ---
 
-# DEMO
+### Bootup 2
 
-💻
+```js
+var http = require('http'),
+    express = require('express')
 
+var app = express()
 
-RESTful API
-Core http module API: <http://bit.ly/1StXFsG>
+// ... Configurations, middleware and routes
 
-Express: <https://github.com/azat-co/rest-api-express>
-
----
-
-### Alternatives
-
-
-* Sails
-* LoopBack :point_left:
-* Meteor
-* Hapi
-* Restify
+app.listen(app.get('port'), function () {
+  // Do something... maybe log some info?
+});
+```
 
 ---
 
-Registry of hand-picked Node frameworks: [nodeframework.com](http://nodeframework.com)
+### Launching the App
+
+```
+$ node server
+$ nodemon server
+$ node-dev server
+$ forever server
+$ pm2 server
+```
 
 ---
+
+# Express is awesome! :rocket:
+
+---
+
 
 # Building a RESTful API
 
@@ -355,17 +385,42 @@ Registry of hand-picked Node frameworks: [nodeframework.com](http://nodeframewor
 
 ### Traditional Web App
 
+Also called thick server.
+
 ![inline](images/traditional-web.png)
+
+---
+
+### Traditional Web App Problems
+
+* Slow and single-tasked (not multitasking)
+* Poor and unresponsive UX (user experience)
+* Duplication of data hogs bandwidth (HTML)
 
 ---
 
 ### API + AJAX/XHR Web App
 
+Also called thick client
+
 ![inline](images/rest-web.png)
 
 ---
 
+### Advantages of a Thick Client
+
+* Responsive interface and UX
+* Only data is transmitted (JSON)
+* Re-use of the core functionality
+* Asynchronous tasks
+* Real-time apps
+
+---
+
+
 ### Node, SPAs and REST
+
+Build an API once and use everywhere
 
 ![inline](images/Node_soa_rest.png)
 
@@ -457,7 +512,55 @@ Modifying a resource, such as changing the contents of a file or deleting it, is
 
 ---
 
-## Express Examples
+## REST API Examples
+
+---
+
+### Handlers Signatures
+
+* `function(request, response, next) {}`: request handler signature
+* `function(error, request, response, next) {}`: error handler signature
+
+---
+
+### GET Route
+
+```js
+app.get('/users', function (request, response) {
+  // Code to retrieve users
+  response.send(user)
+})
+```
+
+---
+
+### Accessing URL Parameters
+
+A URI segment can be parameterized by prefixing it with a semi-colon
+
+```js
+app.get('/users/:id/:another/:segment', function (request, response) { ... })
+```
+
+These dynamic parameters can then be accessed via the request's **params** object
+
+GET /users/:id
+
+```
+request.params.id
+```
+
+---
+
+### Multiple URL Parameters
+
+GET /users/:id/:some/:filter
+
+```
+request.params.id
+request.params.some
+request.params.filter
+```
 
 ---
 
@@ -466,11 +569,11 @@ Modifying a resource, such as changing the contents of a file or deleting it, is
 To allow retrieval by id...
 
 ```js
-app.get('/users/:id', function (req, res) {
-  var id = req.params.id;
-  // code to retrieve a single user
-  res.send(user);
-});
+app.get('/users/:id', function (request, response) {
+  var id = request.params.id
+  // Code to retrieve a single user
+  response.send(user)
+})
 ```
 
 ---
@@ -480,10 +583,10 @@ app.get('/users/:id', function (req, res) {
 GET handlers can also be used to retrieve a collection of resources
 
 ```js
-app.get('/users', function (req, res) {
-  // code to retrieve multiple users
-  res.send(users);
-});
+app.get('/users', function (request, response) {
+  // Code to retrieve multiple users
+  response.send(users)
+})
 ```
 
 ---
@@ -493,19 +596,19 @@ app.get('/users', function (req, res) {
 To create a resource...
 
 ```js
-app.post('/users', function (req, res) {
-  var username = req.body.username;
-  var email = req.body.email;
+app.post('/users', function (request, response) {
+  var username = request.body.username
+  var email = request.body.email
   // ...
-  // code to create a new user
-  res.send(user);
+  // Code to create a new user
+  response.send(user)
 });
 ```
 
 Or maybe just send back the endpoint to get the user...
 
 ```js
-res.send('/api/user/' + user.id);
+response.send('/api/user/' + user.id)
 ```
 
 ---
@@ -515,16 +618,16 @@ res.send('/api/user/' + user.id);
 To update a resource (or create if it doesn't exist, perhaps)...
 
 ```js
-app.put('/users/:id', function (req, res) {
-  var id = req.params.id;
-  // check if the user exists
+app.put('/users/:id', function (request, response) {
+  var id = request.params.id
+  // Check if the user exists
   ...
   if (exists) {
-    // code to modify the user
+    // Code to modify the user
   } else {
-    // code to create the user
+    // Code to create the user
   }
-  res.send(user);
+  response.send(user);
 });
 ```
 
@@ -535,10 +638,10 @@ app.put('/users/:id', function (req, res) {
 To delete a resource, create a DELETE handler for the desired URI
 
 ```js
-app.delete('/users/:id', function (req, res) {
-  var id = req.params.id;
+app.delete('/users/:id', function (request, response) {
+  var id = request.params.id;
   // code to delete the user
-  res.send(user); // or maybe the URL to create a new user?
+  response.send(user); // or maybe the URL to create a new user?
 });
 ```
 
@@ -553,8 +656,8 @@ A client's HTTP request is accessible from within routing handlers
 It is the first argument in the handler's callback
 
 ```js
-app.get('/users/:id', function (req, res) {
-  // 'req' is the request object
+app.get('/users/:id', function (request, response) {
+  // 'req' is the enhanced http request object
 });
 ```
 
@@ -562,58 +665,20 @@ Note: access to the request object grants insight into the client's HTTP request
 
 ---
 
-### Accessing Route Parameters
-
-A URI segment can be parameterized by prefixing it with a semi-colon
-
-```js
-app.get('/users/:id/:another/:segment', function (req, res) { ... });
-```
-
----
-
-### Handlers Signatures
-
-* `function(request, response, next) {}`: request handler signature
-* `function(error, request, response, next) {}`: error handler signature
-
----
-
-### URL Parameters
-
-These dynamic parameters can then be accessed via the request's **params** object
-
-GET /users/:id
-
-```
-req.params.id;
-```
-
----
-
-### URL Parameters
-
-GET /users/:id/:some/:filter
-
-```
-req.params.id;
-req.params.some;
-req.params.filter;
-```
-
----
-
 ### Query Strings
 
 Express converts a URL's query string into JSON
 
-It can be accessed via the request's **query** object GET http://localhost:3000/?name=Bruce+Wayne&age=40&occupation=Batman
+It can be accessed via the request's **query** object 
 
+```
+GET http://localhost:3000/?name=Bruce+Wayne&age=40&occupation=Batman
+```
 
 ```js
-req.query.name;       // "Bruce Wayne"
-req.query.age;        // "40"
-req.query.occupation; // "Batman"
+request.query.name // "Bruce Wayne"
+request.query.age // "40"
+request.query.occupation // "Batman"
 ```
 
 ---
@@ -628,7 +693,7 @@ $ npm install body-parser --save
 
 ---
 
-### Request Body
+### Parsing Request Body
 
 Import middleware:
 
@@ -642,11 +707,19 @@ Parse `application/json`
 app.use(bodyParser.json());
 ```
 
+Usage: single-page applications and other JSON REST clients.
+
+---
+
+### Parsing Request Body
+
 Parse `application/x-www-form-urlencoded`
 
 ```
 app.use(bodyParser.urlencoded({extended: false}))
 ```
+
+Usage: web forms with `action` attribute.
 
 ^Extended false is querystring and true is qs. The "extended" syntax allows for rich objects and arrays to be encoded into the URL-encoded format, allowing for a JSON-like experience with URL-encoded
 
@@ -656,12 +729,14 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 Form data is then accessible via the request's **body** object (ulrencoded)
 
-```js
+```
 // POST name=Bruce+Wayne&age=40&occupation=Your+Average+Businessman
+```
 
-req.body.name;
-req.body.age;
-req.body.occupation;
+```js
+request.body.name
+request.body.age
+request.body.occupation
 ```
 
 ---
@@ -713,6 +788,11 @@ app.use(bodyParser.text({ type: 'text/html' })
 * `app.post(urlPattern, requestHandler[, requestHandler2, ...])`
 * `app.put(urlPattern, requestHandler[, requestHandler2, ...])`
 * `app.delete(urlPattern, requestHandler[, requestHandler2, ...])`
+ 
+--- 
+
+### HTTP Verbs and Routes
+
 * `app.all(urlPattern,  requestHandler[, requestHandler2, ...])`
 * `app.param([name,] callback)`:
 * `app.use([urlPattern,] requestHandler[, requestHandler2, ...])`
@@ -725,6 +805,11 @@ app.use(bodyParser.text({ type: 'text/html' })
 * `request.param`: extract one parameter
 * `request.query`: extract query string parameter
 * `request.route`: return route string
+ 
+---
+
+### Request
+
 * `request.cookies`: cookies, requires cookieParser
 * `request.signedCookies`: signed cookies, requires `cookie-parser`
 * `request.body`: payload, requires `body-parser`
@@ -771,9 +856,9 @@ The response object is also accessible via routing handlers in Express
 It is the second argument in the handler's callback
 
 ```js
-app.get('/users/:id', function (req, res) {
-  // 'res' is the response object
-});
+app.get('/users/:id', function (request, response) {
+  // 'response' is the enhanced response from http
+})
 ```
 
 The response object can be used to modify an HTTP response before sending it out
@@ -782,10 +867,14 @@ The response object can be used to modify an HTTP response before sending it out
 
 ### Express Response Method
 
-
 * `response.redirect(status, url)`: redirect request
 * `response.send(status, data)`: send response
 * `response.json(status, data):` send JSON and force proper headers
+ 
+---
+
+### Express Response Method
+
 * `response.sendfile(path, options, callback)`: send a file
 * `response.render(templateName, locals, callback)`: render a template
 * `response.locals`: pass data to template
@@ -797,14 +886,14 @@ The response object can be used to modify an HTTP response before sending it out
 To specify a status code, use the response object's **status** function
 
 ```js
-app.get('/user/:id', function (req, res) {
-  // logic to check for user
+app.get('/user/:id', function (request, response) {
+  // Logic to check for user
   if (!exists) {
-    res.status(404);
+    response.status(404)
   } else if (authorized) {
-    res.status(200);
+    response.status(200)
   } else {
-    res.status(401);
+    response.status(401)
   }
   // ...
 });
@@ -829,9 +918,9 @@ Note: for 3xx status codes, the client must take additional action following the
 Use the response object's **send** function to send the client a response
 
 ```js
-app.get('...', function (req, res) {
-  res.send('Hello World!');
-});
+app.get('...', function (request, response) {
+  response.send('Hello World!')
+})
 ```
 
 ---
@@ -841,9 +930,9 @@ app.get('...', function (req, res) {
 The content-type is determined given the type of argument passed
 
 ```js
-res.send('Hello World!');       // Content-type: text/plain
-res.send([ 5, 7, 9 ]);          // Content-type: application/json
-res.send({ name: 'John Doe' }); // Content-type: application/json
+response.send('Hello World!')       // Content-type: text/plain
+response.send([ 5, 7, 9 ])          // Content-type: application/json
+response.send({ name: 'John Doe' }) // Content-type: application/json
 ```
 
 ---
@@ -853,8 +942,8 @@ res.send({ name: 'John Doe' }); // Content-type: application/json
 The content-type can also be hardcoded
 
 ```js
-res.set('Content-Type', 'text/plain');
-res.send('Just regular text, no html expected!');
+response.set('Content-Type', 'text/plain')
+response.send('Just regular text, no html expected!')
 ```
 
 ---
@@ -862,7 +951,7 @@ res.send('Just regular text, no html expected!');
 ### Sending an Empty Response
 
 ```js
-res.status(404).end();
+response.status(404).end()
 ```
 
 ---
@@ -873,23 +962,23 @@ HTTP is a stateless protocol - information about a client is not retained over s
 
 Use sessions to overcome this problem
 
-Enable the `cookieParser` and `session` middlewares to process cookies
+Enable the `cookieParser` and `session` middleware to process cookies
 
 ---
 
 ### Sessions
 
 ```js
-app.use(express.cookiesParser());
-app.use(express.session({ secret: 'notastrongsecret' }));
+app.use(express.cookiesParser())
+app.use(express.session({ secret: 'notastrongsecret' }))
 ```
 
 The session is now accessible via `request.session`
 
 ```js
-app.get('...', function (req, res) {
-  var session = req.session;
-});
+app.get('...', function (request, response) {
+  var session = request.session
+})
 ```
 
 
@@ -903,12 +992,12 @@ $ npm install connect-redis express-session
 
 ```js
 var session = require('express-session'),
-  RedisStore = require('connect-redis')(session);
+  RedisStore = require('connect-redis')(session)
 
 app.use(session({
   store: new RedisStore(options),
   secret: 'keyboard cat'
-}));
+}))
 ```
 
 ---
@@ -922,7 +1011,41 @@ app.use(session({
 
 ---
 
-## Questions and Exercises
+# DEMO
+
+RESTful API with Express: <https://github.com/azat-co/rest-api-express> 
+
+💻 :grin:
+
+```
+$ git clone https://github.com/azat-co/rest-api-express.git
+$ cd rest-api-express
+$ npm install
+$ node express.js
+```
+
+^Need mongod running
+
+---
+
+### Alternatives
+
+
+* Sails
+* LoopBack :point_left:
+* Meteor
+* Hapi
+* Restify
+
+---
+
+### More Alternatives
+
+Registry of hand-picked Node frameworks: [nodeframework.com](http://nodeframework.com)
+
+---
+
+### Questions and Exercises
 
 ❓🙋:+1:
 
@@ -932,8 +1055,13 @@ app.use(session({
 
 🔨
 
-
 ```
 $ npm i -g expressworks
-$ npm i -g meanworks
 ```
+
+<https://github.com/azat-co/expressworks>
+
+Videos for solutions: [YouTube ExpressWorks Playlist](https://www.youtube.com/watch?v=C2IqQOLCCoU&list=PLguYmmjtxbWGwQRxXqMTQCj6FNb55aFVo) 
+
+or <http://bit.ly/1jW1sBf>
+
