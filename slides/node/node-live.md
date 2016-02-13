@@ -750,37 +750,16 @@ Sample Code (`code/node`):
 
 ---
 
-## learnyounode Workshop
+## Questions and Exercises
 
-1. Pick the first problem
-2. Read instructions 
-3. Solve the problem (e.g., create `program.js`).
-4. Verify
-5. Pick the next problem
+:+1:
 
 ---
 
-## Starting learnyounode
+## Workshop
 
-Install: 
+One hand: help, two hands: finished one task
 
 ```
 $ sudo npm install learnyounode -g
-```
-
-Start:
-
-```
-$ learnyounode
-```
-
----
-
-
-## Verifying learnyounode
-
-Verify solution with:
-
-```
-$ learnyounode verify program.js
 ```

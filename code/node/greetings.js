@@ -1,4 +1,4 @@
-var exports = module.exports = {};
+
 
 exports.sayHelloInEnglish = function() {
   return "Hello";
