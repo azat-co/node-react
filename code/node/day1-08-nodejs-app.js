@@ -3,7 +3,7 @@
 var http = require('http')
 
 server = http.createServer(function (request, response) {
-  console.log('url', request.url)
+  console.log('url: ', request.url)
   console.log('method: ', request.method)
   response.writeHead(200, {'Content-Type': 'text/plain'})
   response.end('Hello World\n')
