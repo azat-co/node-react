@@ -1,0 +1,10 @@
+{
+  "name": "message-board-rest-api",
+  "version": "1.0.1",
+  "dependencies": {
+    "mongodb": "2.0.35"
+  },
+  "engines": {
+    "node": ">=0.12.x"
+  }
+}
