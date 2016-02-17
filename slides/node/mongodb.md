@@ -13,9 +13,11 @@ Last updated: Jan 2016
 
 ### C.A.P. theorem
 
-A. Consistency (strong vs. eventual-delay)
-B. Availability
-C. Partition tolerance (on cluster)
+* __C__onsistency (strong vs. eventual-delay)
+* __A__vailability
+* __P__artition tolerance (on cluster)
+
+SQL: C+A
 
 ---
 
