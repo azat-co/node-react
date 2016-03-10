@@ -364,6 +364,14 @@ workshops = coding + collaboration + pair programming + solo programming + discu
 
 ---
 
+# Interweaving
+
+---
+
+# Spaced Repetition
+
+---
+
 ### Agenda
 
 Node.js Day:
