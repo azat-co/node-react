@@ -67,16 +67,7 @@ Instructor: Azat Mardan
 
 ---
 
-![left 100%](images/proexpress.jpg)
-![right 100%](images/practicalnode.jpg)
-
-
----
-
-
-![left 100%](images/reactquickly.jpg)
-![right 100%](images/fullstackjavascript.jpg)
-
+![inline](images/azats-books-covers.png)
 
 ---
 
