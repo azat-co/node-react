@@ -7,7 +7,7 @@ slidenumbers: true
 ![inline 70%](images/np-logo120.png)
 
 React.js version: 0.14.3
-Last updated: Jan 2016
+Last updated: Feb 2016
 
 ---
 
@@ -38,14 +38,28 @@ Pete Hunt <http://bit.ly/1U53Rb2>
 
 ### MVC
 
-React.js is not a model-view-controller (MVC) framework/library. You need to bring your own models and routers. React.js is only VIEW.
+React.js is not a model-view-controller (MVC) framework/library.
+
+---
+
+# You need to bring your own models and routers.
+
+
+---
+
+# React.js is only VIEW.
 
 
 ---
 
 ### Web Stack
 
-React.js can work with other MVC-like framework such as Backbone.js and Angular.js. React.js is often used with Flux and Meteor.
+## React.js can work with other MVC-like framework such as Backbone.js and Angular.js.
+
+---
+
+
+## React.js is often used with Flux and Meteor.
 
 ---
 
@@ -59,7 +73,26 @@ There are several ways:
 
 1. Source code for this course.
 1. React.js website: <http://facebook.github.io/react/downloads.html>.
-1. nmp: `$ npm install -g react-tools & npm install react`.
+1. nmp: `$ npm install react react-dom`.
+
+---
+
+# npm
+
+```
+$ mkdir react-project
+$ cd react-project
+$ npm init
+```
+
+```
+$ npm i --save react@0.14.7 react-dom@0.14.7
+```
+
+---
+
+`react-project/node_modules/react/dist/react.js`
+`react-project/node_modules/react-dom/dist/react-dom.js`
 
 ---
 
@@ -75,11 +108,12 @@ Start the HTML file `hello-world.html`:
 
 ### React.js Inclusion
 
-Include React.js and JSXTransformer libraries:
+Include React.js and React DOM libraries:
 
 ```html
   <head>
     <script src="react.js"></script>
+    <script src="react-dom.js"></script>
   </head>
 ```
 
@@ -88,12 +122,22 @@ You can choose minified version (react.min.js) as well.
 
 ---
 
+```html
+  <head>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+  </head>
+```
+
+---
+
 ### React.js CDN
 
 Or hotlink to Facebook CDN (not recommended):
 
 ```html
-<script src="https://fb.me/react-0.14.3.min.js"></script>
+<script src="https://fb.me/react-0.14.7.min.js"></script>
+<script src="https://fb.me/react-dom-0.14.7.min.js"></script>
 ```
 
 ---
@@ -212,49 +256,39 @@ Note: As you've seen from the previous Hello World! example, JSX is optional.
 
 ### Ways to use JSX
 
-1. Run-time: development only
-1. Pre-process: production recommended
+1. Pre-process with `babel-cli`: production recommended
+1. Build with Gulp, Grunt, Webpack and Babel: production recommended
+1. Run-time via `babel-standlone` v6.4.4: development only
 
 ---
 
 ### Run-time JSX
 
-Run-time JSX performed by including the `JSXTransformer-0.13.3.js` file into html file. Download `JSXTransformer-0.13.3.js`:
+Run-time JSX performed by `babel-standlone` v6.4.4 file (Babel v5.x had `browser.js`).
 
-1. This course source code
-1. React.js website: http://facebook.github.io/react/downloads.html
-1. nmp: `$ npm install react`
-
+Download <https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.4.4/babel.min.js>
 
 ---
 
-### Pre-processed JSX
 
-Pre-processing JSX is better over run-time because it's faster. Pre-processing is the same as compiling into native JavaScript. You can do it with:
+### Babel Standalone
 
-1. babel (recommended): `$ npm install -g babel`
-1. react-tools (discontinued by Facebook): `$ npm install -g react-tools`
-
----
-
-### JSXTransformer
-
-For now, we'll use the JSXTransformer that comes with the React.js 0.13.3. This code goes into `hello-world-jsx.html`:
+For now, we'll use the Babel Standalone v6.4.4. This code goes into `hello-world-jsx.html`:
 
 ```html
-<script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.4.4/babel.min.js"></script>
 ```
 
 ---
 
 ### JSX Type Script
 
-Let's convert the code from JavaScript to JSX by changing `text/javascript` to `text/jsx`:
+Let's convert the code from JavaScript to JSX by changing `text/javascript` to `text/babel`:
 
 ```html
   <body>
     <div id="example"></div>
-    <script type="text/jsx">
+    <script type="text/babel">
     ...
     </script>
   </body>
@@ -322,7 +356,7 @@ Note: The native JavaScript example can also be split into two files.
 
 Add this line to the `hello-world-jsx-babel.html` file **right before** closing `body`:
 
-```
+```html
 ...
     <script src="hello-world.js"></script>
 ...
@@ -330,16 +364,36 @@ Add this line to the `hello-world-jsx-babel.html` file **right before** closing 
 
 ---
 
-### Babel Auto-Change
+### Pre-processed JSX
 
-Install and run babel like this:
+Pre-processing JSX is better over run-time because it's faster. Pre-processing is the same as compiling into native JavaScript. You can do it with Babel CLI
+
+---
+
+### Babel CLI
 
 ```
-$ npm install -g babel
-$ babel -w hello-world.jsx -o hello-world.js
+$ npm install --save-dev babel-cli@6.4.4 babel-preset-react@6.4.4
+$ echo '{ "presets": ["react"] }' > .babelrc
+$ ./node_modules/.bin/babel src -d lib
+```
+
+---
+
+```
+$ ./node_modules/.bin/babel hello-world.jsx -o hello-world.js -w
 ```
 
 The `hello-world.js` will be created. Leave Babel running so the `-w` can update changes automatically.
+
+---
+
+
+### Compiling with Babel
+
+Compile JSX into regular JS with:
+
+`$ babel -w hello-world-component.jsx -o hello-world-component.js`
 
 ---
 
@@ -420,19 +474,6 @@ React.render(
 
 ---
 
-### Compiling with Babel
-
-Compile JSX into regular JS with:
-
-`$ babel -w hello-world-component.jsx -o hello-world-component.js`
-
-Note: Have babel installed, if don't have it then run:
-
-```
-$ npm install -g babel
-```
-
----
 
 ### HTML Skeleton
 
@@ -531,7 +572,11 @@ var Content = React.createClass({
     );
   }
 })
+```
 
+---
+
+```js
 React.render(
   <Content />,
   document.getElementById('content')
@@ -573,7 +618,7 @@ Remember that the content element (`<div id="content"></div>`) must precede the 
 
 Use `{}` to render variable inside of JSX:
 
-```  
+```js
 {a}
 {' '}
 {b}
@@ -748,9 +793,14 @@ var Content = React.createClass({
 
 ### Button onClick Event
 
-The button has the `onClick={this.click}`. The name must match the method of the Content component class:
+The button has the `onClick={this.click}`.
 
-```
+
+---
+
+The name must match the method of the `Content` component class:
+
+```js
 ...
   render: function() {
     return (
@@ -761,6 +811,10 @@ The button has the `onClick={this.click}`. The name must match the method of the
   }
 })
 ```
+
+---
+
+# Demo
 
 <http://plnkr.co/edit/sIFuS7ng6GKT45t4FvFR?p=preview>
 
@@ -940,6 +994,12 @@ The `/did-mount` folder.
 ![inline](images/timer.png)
 
 ---
+
+# Timer Demo
+
+---
+
+# Project: Timer Solution
 
 <http://bit.ly/1StYTnF>
 
