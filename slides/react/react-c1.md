@@ -1,10 +1,7 @@
-footer: © Node Program, 2016
+footer: © Azat Mardan, 2016
 slidenumbers: true
 
-# Node Program
-## Lesson 1: React Basics
-
-![inline 70%](images/np-logo120.png)
+# React.js 101
 
 React.js version: 0.14.3
 Last updated: Feb 2016
@@ -254,6 +251,15 @@ Note: As you've seen from the previous Hello World! example, JSX is optional.
 
 ---
 
+### What is Babel
+
+Babel allows you to use ECMAScript 6 now by compiling ES6 code into ES5-friendly code to support browsers that don't have ES6 yet.
+
+<https://babeljs.io/>
+
+---
+
+
 ### Ways to use JSX
 
 1. Pre-process with `babel-cli`: production recommended
@@ -319,29 +325,15 @@ Open `hello-world-jsx.html` and check if you see Hello world!
 
 ---
 
-# Babel
 
-The JavaScript compiler.
-
-<http://babeljs.io/>
-
----
-
-### Compiling JSX with Babel
+### Pre-Processing with Babel
 
 For more realistic and production-like example, we'll use Babel. This will allow us to compile JSX into native JS and run only native JS in the browser. This will increase performance in production React.js apps.
 
 ---
 
-### What is Babel
 
-Babel allows you to use ECMAScript 6 now by compiling ES6 code into ES5-friendly code to support browsers that don't have ES6 yet.
-
-<https://babeljs.io/>
-
----
-
-### Separation of Concerns
+### Abstract Code
 
 Firstly, let's abstract JSX code from `hello-world-jsx.html` HTML into two files:
 
@@ -364,9 +356,12 @@ Add this line to the `hello-world-jsx-babel.html` file **right before** closing 
 
 ---
 
-### Pre-processed JSX
+### Pre-Processed JSX
 
-Pre-processing JSX is better over run-time because it's faster. Pre-processing is the same as compiling into native JavaScript. You can do it with Babel CLI
+Pre-processing JSX is better over run-time because it's faster.
+
+
+Pre-processing is the same as compiling into native JavaScript. You can do it with Babel CLI.
 
 ---
 
