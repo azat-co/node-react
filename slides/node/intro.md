@@ -204,6 +204,16 @@ It turned out for web-based application, single-threaded asynchronous event-loop
 
 ---
 
+
+![inline](images/coffeeshop-blocking.jpg)
+
+
+---
+
+![inline](images/coffeeshop-non-blocking.jpg)
+
+---
+
 ### Scaling Node Vertically
 
 To scale Node vertically, you can take advantage of multiple CPUs cores or compute units (multi-threading) with clustering (e.g., StrongLoop's PM).
