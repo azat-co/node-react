@@ -24,7 +24,7 @@ Express is the most popular web application framework for Node. It is easy to wo
 
 ### DEMO
 
-Core http module API: <http://bit.ly/1StXFsG> 
+Core http module API: <http://bit.ly/1StXFsG>
 
 :computer: :confused:
 
@@ -195,7 +195,7 @@ app.use(bodyParser.json())
 
 ---
 
-### Two Categories of Express Middleware 
+### Two Categories of Express Middleware
 
 1. npm modules, e.g., `body-parser`
 2. Custom middleware
@@ -320,10 +320,20 @@ Custom callbacks can be defined to parse templates
 ```js
 app.engine([format], function (path, options, callback) {
   // Template parsing logic goes here
-});
+})
 ```
 
 Note: custom callbacks are useful if the template engine doesn't export an **__express** function
+
+---
+
+### Express Route
+
+```js
+app.get('/', function(req, res) {
+  res.end()
+})
+```
 
 ---
 
@@ -340,7 +350,7 @@ var app = express()
 var server = http.createServer(app)
 server.listen(app.get('port'), function () {
   // Do something... maybe log some info?
-});
+})
 ```
 
 ---
@@ -357,7 +367,7 @@ var app = express()
 
 app.listen(app.get('port'), function () {
   // Do something... maybe log some info?
-});
+})
 ```
 
 ---
@@ -378,6 +388,21 @@ $ pm2 server
 
 ---
 
+## Workshop
+
+🔨
+
+```
+$ npm i -g expressworks
+```
+
+<https://github.com/azat-co/expressworks>
+
+Videos for solutions: [YouTube ExpressWorks Playlist](https://www.youtube.com/watch?v=C2IqQOLCCoU&list=PLguYmmjtxbWGwQRxXqMTQCj6FNb55aFVo)
+
+or <http://bit.ly/1jW1sBf>
+
+---
 
 # Building a RESTful API
 
@@ -426,17 +451,7 @@ Build an API once and use everywhere
 
 ---
 
-### API Decomposition
 
-![inline](images/API_decomposition.png)
-
----
-
-### Microservices
-
-![inline](images/Microservices.png)
-
----
 
 ### REST Basics
 
@@ -492,34 +507,33 @@ HEAD    /tickets/12  - What headers would I get if I tried to get ticket #12?
 
 ---
 
-### "Resources"
+### Handlers Signatures
 
-Resources are entities that can be stored on a computer, such as:
-
-* Files
-* Database entries
-* Processed output from functions
-
----
-
-### "Resources"
-
-REST uses HTTP requests and responses to provide **representations** of resources
-
-For example, the current version of a file available for download via its URL is a representation of a file resource
-
-Modifying a resource, such as changing the contents of a file or deleting it, is also a resource state that can be represented via requests and responses in a REST system
+* `function(request, response, next) {}`: request handler signature
+* `function(error, request, response, next) {}`: *error* handler signature
 
 ---
 
 ## REST API Examples
 
+Code along side!
+
+Goal: build RESTful API with MongoDB
+
 ---
 
-### Handlers Signatures
+### TDD
 
-* `function(request, response, next) {}`: request handler signature
-* `function(error, request, response, next) {}`: error handler signature
+Download `express.test.js` and `package.json`
+
+<https://github.com/azat-co/rest-api-express>
+
+
+---
+
+### App
+
+Create `index.js` and start implementing the server.
 
 ---
 
@@ -669,7 +683,7 @@ Note: access to the request object grants insight into the client's HTTP request
 
 Express converts a URL's query string into JSON
 
-It can be accessed via the request's **query** object 
+It can be accessed via the request's **query** object
 
 ```
 GET http://localhost:3000/?name=Bruce+Wayne&age=40&occupation=Batman
@@ -788,8 +802,8 @@ app.use(bodyParser.text({ type: 'text/html' })
 * `app.post(urlPattern, requestHandler[, requestHandler2, ...])`
 * `app.put(urlPattern, requestHandler[, requestHandler2, ...])`
 * `app.delete(urlPattern, requestHandler[, requestHandler2, ...])`
- 
---- 
+
+---
 
 ### HTTP Verbs and Routes
 
@@ -805,7 +819,7 @@ app.use(bodyParser.text({ type: 'text/html' })
 * `request.param`: extract one parameter
 * `request.query`: extract query string parameter
 * `request.route`: return route string
- 
+
 ---
 
 ### Request
@@ -870,7 +884,7 @@ The response object can be used to modify an HTTP response before sending it out
 * `response.redirect(status, url)`: redirect request
 * `response.send(status, data)`: send response
 * `response.json(status, data):` send JSON and force proper headers
- 
+
 ---
 
 ### Express Response Method
@@ -1013,7 +1027,7 @@ app.use(session({
 
 # DEMO
 
-RESTful API with Express: <https://github.com/azat-co/rest-api-express> 
+RESTful API with Express: <https://github.com/azat-co/rest-api-express>
 
 💻 :grin:
 
@@ -1049,19 +1063,5 @@ Registry of hand-picked Node frameworks: [nodeframework.com](http://nodeframewor
 
 ❓🙋:+1:
 
----
 
-## Workshop
-
-🔨
-
-```
-$ npm i -g expressworks
-```
-
-<https://github.com/azat-co/expressworks>
-
-Videos for solutions: [YouTube ExpressWorks Playlist](https://www.youtube.com/watch?v=C2IqQOLCCoU&list=PLguYmmjtxbWGwQRxXqMTQCj6FNb55aFVo) 
-
-or <http://bit.ly/1jW1sBf>
 
