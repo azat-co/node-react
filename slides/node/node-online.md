@@ -622,6 +622,12 @@ The private attribute prevents accidental publishing
 
 ---
 
+npmrc
+
+<https://github.com/deoxxa/npmrc>
+
+---
+
 ## When to use `-g`?
 
 A: Only for command-line tools. They usually have `bin` in package.json:
@@ -753,7 +759,7 @@ Sample Code (`code/node`):
 ## learnyounode Workshop
 
 1. Pick the first problem
-2. Read instructions 
+2. Read instructions
 3. Solve the problem (e.g., create `program.js`).
 4. Verify
 5. Pick the next problem
@@ -762,7 +768,7 @@ Sample Code (`code/node`):
 
 ## Starting learnyounode
 
-Install: 
+Install:
 
 ```
 $ sudo npm install learnyounode -g
