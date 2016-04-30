@@ -96,7 +96,7 @@ Instructor: Azat Mardan
 ### HipChat Room
 
 
-<https://www.hipchat.com/gI1lG5c2q>
+`https://www.hipchat.com/gI1lG5c2q`
 
 ---
 
