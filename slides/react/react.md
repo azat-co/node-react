@@ -462,14 +462,14 @@ var HelloWorld = React.createClass({
   render: function() {
     return (
       <h1>Hello world!!!</h1>
-    );
+    )
   }
 })
 
 ReactDOM.render(
   <HelloWorld/>,
   document.getElementById('example')
-);
+)
 ```
 
 ---
@@ -534,7 +534,7 @@ ReactDOM.render(
     <p>This text is very useful for learning React.js.</p>
   </div>,
   document.getElementById('example')
-);
+)
 ```
 
 ---
@@ -552,7 +552,7 @@ ReactDOM.render(
   <p>This text is very useful for learning React.js.</p>
   ,
   document.getElementById('content')
-);
+)
 ```
 
 ---
@@ -569,7 +569,7 @@ var Content = React.createClass({
         </h1>
         <p>This text is very useful for learning React.js.</p>
       </div>
-    );
+    )
   }
 })
 ```
@@ -580,7 +580,7 @@ var Content = React.createClass({
 ReactDOM.render(
   <Content />,
   document.getElementById('content')
-);
+)
 ```
 
 ---
@@ -607,7 +607,7 @@ Remember that the content element (`<div id="content"></div>`) must precede the 
       ReactDOM.render(
         <Content />,
         document.getElementById('content')
-      );
+      )
     </script>
 ...
 ```
@@ -641,7 +641,7 @@ var Content = React.createClass({
         </h1>
         <p>This text is very useful for learning React.js.</p>
       </div>
-    );
+    )
   }
 })
 ```
@@ -707,7 +707,7 @@ To output the state property `a`, we use `{this.state.a}`:
         <h1>Changing the State</h1>
         <p>This value is random: {this.state.a}</p>
       </div>
-    );
+    )
   }
 })
 ```
@@ -748,7 +748,7 @@ var Content = React.createClass({
       <div>
         <p>This value is return by the method: {this.getA()} </p>
       </div>
-    );
+    )
   }
 })
 ...
@@ -807,7 +807,7 @@ The name must match the method of the `Content` component class:
       <div>
         <button onClick={this.click}>Don't click me {this.state.counter} times!</button>
       </div>
-    );
+    )
   }
 })
 ```
@@ -856,7 +856,7 @@ var Content = React.createClass({
       <div>
         <ClickCounterButton counter={this.state.counter} handler={this.click}/>
       </div>
-    );
+    )
   }
 })
 ...
@@ -917,7 +917,7 @@ var Content = React.createClass({
         <br/>
         <Counter value={this.state.counter}/>
       </div>
-    );
+    )
   }
 })
 ```
@@ -944,7 +944,7 @@ var Content = React.createClass({
   render: function() {
     return (
       <div/>
-    );
+    )
   }
 })
 ```
