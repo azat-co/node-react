@@ -816,6 +816,8 @@ app.get('/messages', function(req, res, next) {
 })
 ```
 
+---
+
 ```js
 app.post('/messages', function(req, res, next){
   console.log(req.body)
@@ -839,7 +841,9 @@ if (errors) return next(errors)
 
 ```js
 app.get('*', function(req, res, next){
-  res.send('Server provides two endpoints GET /messages and POST /messages.\n Use Postman, curl or another client to make HTTP requests.')
+  res.send('Server provides two endpoints GET\
+    /messages and POST /messages.\n Use Postman, curl or\
+    another client to make HTTP requests.')
 })
 ```
 
