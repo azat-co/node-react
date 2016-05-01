@@ -7,7 +7,7 @@ slidenumbers: true
 ![inline 70%](images/np-logo120.png)
 
 Node.js version: 5.1
-Last updated: Jan 2016
+Last updated: May 2016
 
 ---
 
@@ -452,7 +452,6 @@ Build an API once and use everywhere
 ---
 
 
-
 ### REST Basics
 
 REpresentational State Transfer (REST) is an architectural pattern for developing network applications
@@ -511,288 +510,6 @@ HEAD    /tickets/12  - What headers would I get if I tried to get ticket #12?
 
 * `function(request, response, next) {}`: request handler signature
 * `function(error, request, response, next) {}`: *error* handler signature
-
----
-
-## REST API Examples
-
-Code along side!
-
-Goal: build RESTful API with MongoDB
-
----
-
-### TDD
-
-Download `express.test.js` and `package.json`
-
-<https://github.com/azat-co/rest-api-express>
-
-
----
-
-### App
-
-Create `index.js` and start implementing the server.
-
----
-
-### GET Route
-
-```js
-app.get('/users', function (request, response) {
-  // Code to retrieve users
-  response.send(user)
-})
-```
-
----
-
-### Accessing URL Parameters
-
-A URI segment can be parameterized by prefixing it with a semi-colon
-
-```js
-app.get('/users/:id/:another/:segment', function (request, response) { ... })
-```
-
-These dynamic parameters can then be accessed via the request's **params** object
-
-GET /users/:id
-
-```
-request.params.id
-```
-
----
-
-### Multiple URL Parameters
-
-GET /users/:id/:some/:filter
-
-```
-request.params.id
-request.params.some
-request.params.filter
-```
-
----
-
-### GET
-
-To allow retrieval by id...
-
-```js
-app.get('/users/:id', function (request, response) {
-  var id = request.params.id
-  // Code to retrieve a single user
-  response.send(user)
-})
-```
-
----
-
-### GET
-
-GET handlers can also be used to retrieve a collection of resources
-
-```js
-app.get('/users', function (request, response) {
-  // Code to retrieve multiple users
-  response.send(users)
-})
-```
-
----
-
-### POST
-
-To create a resource...
-
-```js
-app.post('/users', function (request, response) {
-  var username = request.body.username
-  var email = request.body.email
-  // ...
-  // Code to create a new user
-  response.send(user)
-});
-```
-
-Or maybe just send back the endpoint to get the user...
-
-```js
-response.send('/api/user/' + user.id)
-```
-
----
-
-### PUT
-
-To update a resource (or create if it doesn't exist, perhaps)...
-
-```js
-app.put('/users/:id', function (request, response) {
-  var id = request.params.id
-  // Check if the user exists
-  ...
-  if (exists) {
-    // Code to modify the user
-  } else {
-    // Code to create the user
-  }
-  response.send(user);
-});
-```
-
----
-
-### DELETE
-
-To delete a resource, create a DELETE handler for the desired URI
-
-```js
-app.delete('/users/:id', function (request, response) {
-  var id = request.params.id;
-  // code to delete the user
-  response.send(user); // or maybe the URL to create a new user?
-});
-```
-
-Note: `del` is [deprecated](https://github.com/jspears/mers/issues/33).
-
----
-
-### HTTP Requests
-
-A client's HTTP request is accessible from within routing handlers
-
-It is the first argument in the handler's callback
-
-```js
-app.get('/users/:id', function (request, response) {
-  // 'req' is the enhanced http request object
-});
-```
-
-Note: access to the request object grants insight into the client's HTTP request, providing data on the request header, body, et al.
-
----
-
-### Query Strings
-
-Express converts a URL's query string into JSON
-
-It can be accessed via the request's **query** object
-
-```
-GET http://localhost:3000/?name=Bruce+Wayne&age=40&occupation=Batman
-```
-
-```js
-request.query.name // "Bruce Wayne"
-request.query.age // "40"
-request.query.occupation // "Batman"
-```
-
----
-
-### Request Body
-
-Enable the `json()` and `urlencoded()` middleware to convert raw form data into JSON
-
-```
-$ npm install body-parser --save
-```
-
----
-
-### Parsing Request Body
-
-Import middleware:
-
-```
-var bodyParser = require('body-parser')
-```
-
-Parse `application/json`
-
-```
-app.use(bodyParser.json());
-```
-
-Usage: single-page applications and other JSON REST clients.
-
----
-
-### Parsing Request Body
-
-Parse `application/x-www-form-urlencoded`
-
-```
-app.use(bodyParser.urlencoded({extended: false}))
-```
-
-Usage: web forms with `action` attribute.
-
-^Extended false is querystring and true is qs. The "extended" syntax allows for rich objects and arrays to be encoded into the URL-encoded format, allowing for a JSON-like experience with URL-encoded
-
----
-
-### Accessing Form Data
-
-Form data is then accessible via the request's **body** object (ulrencoded)
-
-```
-// POST name=Bruce+Wayne&age=40&occupation=Your+Average+Businessman
-```
-
-```js
-request.body.name
-request.body.age
-request.body.occupation
-```
-
----
-
-### File Uploads
-
-File uploads from web forms (multipart/form-data) can be parsed with these libraries:
-
-* <https://github.com/expressjs/multer>
-* <https://github.com/yahoo/express-busboy>
-* <https://github.com/mscdex/connect-busboy>
-* <https://github.com/andrewrk/node-multiparty>
-
----
-
-### Parsing JSON
-
-Parse various different custom JSON types as JSON
-
-```js
-app.use(bodyParser.json({ type: 'application/*+json' }))
-```
-
----
-
-### Parsing Buffer
-
-Parse some custom thing into a Buffer
-
-```js
-app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
-```
-
----
-
-### Parsing HTML
-
-Parse an HTML body into a string
-
-```js
-app.use(bodyParser.text({ type: 'text/html' })
-```
 
 ---
 
@@ -980,6 +697,304 @@ Enable the `cookieParser` and `session` middleware to process cookies
 
 ---
 
+### Request Body
+
+Enable the `json()` and `urlencoded()` middleware to convert raw form data into JSON
+
+```
+$ npm install body-parser --save
+```
+
+---
+
+### Parsing Request Body
+
+Import middleware:
+
+```js
+var bodyParser = require('body-parser')
+```
+
+Parse `application/json`
+
+```js
+app.use(bodyParser.json())
+```
+
+Usage: single-page applications and other JSON REST clients.
+
+---
+
+### Parsing Request Body
+
+Parse `application/x-www-form-urlencoded`
+
+```js
+app.use(bodyParser.urlencoded({extended: false}))
+```
+
+Usage: web forms with `action` attribute.
+
+^Extended false is querystring and true is qs. The "extended" syntax allows for rich objects and arrays to be encoded into the URL-encoded format, allowing for a JSON-like experience with URL-encoded
+
+---
+
+## REST API Example
+
+Code along side!
+
+Goal: build RESTful API with MongoDB
+
+---
+
+# Message Board API
+
+* `POST /messages`
+* `GET /messages`
+
+---
+
+### App
+
+Create `index.js` and start implementing the server.
+
+---
+
+```js
+var express = require('express'),
+  mongodb = require('mongodb'),
+  app = express(),
+  bodyParser = require('body-parser'),
+  validator = require('express-validator'),
+  logger = require('morgan'),
+  errorHandler = require('errorhandler'),
+  compression = require('compression'),
+  url = 'mongodb://localhost:27017/board'
+```
+
+---
+
+```js
+mongodb.MongoClient.connect(url, function(err, db) {
+  if (err) {
+    console.error(err)
+    process.exit(1)
+  }
+```
+
+---
+
+```js
+app.use(compression())
+app.use(logger('combined'))
+app.use(errorHandler())
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
+app.use(validator())
+app.use(express.static('public'))
+```
+
+---
+
+```js
+app.use(function(req, res, next){
+    req.messages = db.collection('messages')
+    return next()
+  })
+```
+
+---
+
+### GET Route
+
+```js
+app.get('/messages', function(req, res, next) {
+  req.messages.find({}, {sort: {_id: -1}}).toArray(function(err, docs){
+    if (err) return next(err)
+    return res.json(docs)
+  })
+})
+```
+
+```js
+app.post('/messages', function(req, res, next){
+  console.log(req.body)
+  req.checkBody('message', 'Invalid message in body').notEmpty()
+  req.checkBody('name', 'Invalid name in body').notEmpty()
+  var errors = req.validationErrors()
+```
+
+---
+
+```js
+if (errors) return next(errors)
+ req.messages.insert(req.body, function (err, result) {
+   if (err) return next(err)
+   return res.json(result.ops[0])
+ })
+})
+```
+
+---
+
+```js
+app.get('*', function(req, res, next){
+  res.send('Server provides two endpoints GET /messages and POST /messages.\n Use Postman, curl or another client to make HTTP requests.')
+})
+```
+
+---
+
+```js
+app.listen(3000)
+})
+```
+
+---
+
+
+## Run it!
+
+Test with CURL or Postman
+
+```
+curl localhost:3000/messages
+curl -H "Content-Type: application/json" -X POST -d '{"message":"hi","name":"Bob"}' localhost:3000/messapes
+```
+
+---
+
+# Official Solution
+
+<https://github.com/azat-co/react/blob/master/ch6/board/index.js>
+
+---
+
+
+### Accessing URL Parameters
+
+A URI segment can be parameterized by prefixing it with a semi-colon
+
+```js
+app.get('/users/:id', function (request, response) {
+  request.params.id
+})
+```
+
+`GET /users/572611d856b11dcec61651bb`
+
+---
+
+### Multiple URL Parameters
+
+GET /users/:id/:some/:filter
+
+```
+request.params.id
+request.params.some
+request.params.filter
+```
+
+---
+
+### PUT
+
+To update a resource (or create if it doesn't exist, perhaps)...
+
+```js
+app.put('/users/:id', function (request, response) {
+  var id = request.params.id
+  // Check if the user exists
+  ...
+  if (exists) {
+    // Code to modify the user
+  } else {
+    // Code to create the user
+  }
+  response.send(user)
+})
+```
+
+---
+
+### DELETE
+
+To delete a resource, create a DELETE handler for the desired URI
+
+```js
+app.delete('/users/:id', function (request, response) {
+  var id = request.params.id
+  // code to delete the user
+  response.send(user) // or maybe the URL to create a new user?
+})
+```
+
+Note: `del` is [deprecated](https://github.com/jspears/mers/issues/33).
+
+---
+
+### HTTP Requests
+
+A client's HTTP request is accessible from within routing handlers
+
+It is the first argument in the handler's callback
+
+```js
+app.get('/users/:id', function (request, response) {
+  // 'req' is the enhanced http request object
+});
+```
+
+Note: access to the request object grants insight into the client's HTTP request, providing data on the request header, body, et al.
+
+---
+
+### Query Strings
+
+Express converts a URL's query string into JSON
+
+It can be accessed via the request's **query** object
+
+```
+GET http://localhost:3000/?name=Bruce+Wayne&age=40&occupation=Batman
+```
+
+```js
+request.query.name // "Bruce Wayne"
+request.query.age // "40"
+request.query.occupation // "Batman"
+```
+
+---
+
+
+### Accessing Form Data
+
+Form data is then accessible via the request's **body** object (ulrencoded)
+
+```
+// POST name=Bruce+Wayne&age=40&occupation=Your+Average+Businessman
+```
+
+```js
+request.body.name
+request.body.age
+request.body.occupation
+```
+
+---
+
+### File Uploads
+
+File uploads from web forms (multipart/form-data) can be parsed with these libraries:
+
+* <https://github.com/expressjs/multer>
+* <https://github.com/yahoo/express-busboy>
+* <https://github.com/mscdex/connect-busboy>
+* <https://github.com/andrewrk/node-multiparty>
+
+---
+
 ### Sessions
 
 ```js
@@ -1025,25 +1040,8 @@ app.use(session({
 
 ---
 
-# DEMO
-
-RESTful API with Express: <https://github.com/azat-co/rest-api-express>
-
-💻 :grin:
-
-```
-$ git clone https://github.com/azat-co/rest-api-express.git
-$ cd rest-api-express
-$ npm install
-$ node express.js
-```
-
-^Need mongod running
-
----
 
 ### Alternatives
-
 
 * Sails
 * LoopBack :point_left:
@@ -1056,6 +1054,26 @@ $ node express.js
 ### More Alternatives
 
 Registry of hand-picked Node frameworks: [nodeframework.com](http://nodeframework.com)
+
+---
+
+# Project Time!
+
+💻 :grin:
+
+
+---
+
+# Free JSON RESTful API
+
+<https://github.com/azat-co/rest-api-express>
+
+Download `express.test.js` and `package.json`
+
+
+```
+$ npm install
+```
 
 ---
 
