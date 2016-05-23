@@ -4,6 +4,7 @@ var Timer = React.createClass({
      return <h1>{this.props.time}</h1>
     }
 })
+
 var TimerWrapper = React.createClass({
   getInitialState: function () {
     return {time: null, int: null}
@@ -27,7 +28,7 @@ var TimerWrapper = React.createClass({
         <Button time="15" startTimer={this.startTimer}/>
         <Timer time={this.state.time}/>
       </div>
-    );
+    )
   }
 })
 

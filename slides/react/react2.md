@@ -116,7 +116,7 @@ var Content = React.createClass({
         <Button />
         <Button />
       </div>
-    );
+    )
   }
 })
 ```
@@ -639,7 +639,7 @@ This is an anti-pattern because user will never be able to change the value in t
 
 ```
 render: function() {
-   return <input type="text" value="Hello!" />;
+   return <input type="text" value="Hello!" />
  }
 ```
 
@@ -647,7 +647,7 @@ The right pattern is to use `defautValue` prop for setting default values:
 
 ```
 render: function() {
-   return <input type="text" defaultValue="Hello!" />;
+   return <input type="text" defaultValue="Hello!" />
  }
 ```
 
@@ -688,7 +688,7 @@ var Content = React.createClass({
       <div style={style}>
         <h1>Hello!</h1>
       </div>
-    );
+    )
   }
 })
 ```
@@ -721,11 +721,15 @@ Source code: `/style` or <http://plnkr.co/edit/8OjJ1vBPH7sN9pNf065G?p=preview>.
 
 ---
 
-### Project: Message Board
+# Demo
 
-Stack: React.js + jQuery + Express + MongoDB
+Project: Message Board
 
-Source code: `http://bit.ly/1StYYYy`. To run the project:
+---
+
+### Project: Message Board: React.js + jQuery + Express + MongoDB
+
+Source code: `http://bit.ly/1StYYYy` or <http://bit.ly/1StYYYy>. To run the project:
 
 ```
 $ npm install -g gulp
@@ -737,7 +741,9 @@ Navigate to <http://localhost:3000>
 
 ---
 
-<http://bit.ly/1StYYYy>
+1. Copy `gulpfile.js` and `package.json`
+1. Run `npm i`
+
 
 ---
 
