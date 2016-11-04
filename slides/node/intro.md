@@ -6,8 +6,8 @@ slidenumbers: true
 
 ![inline 70%](images/np-logo120.png)
 
-Node.js version: 5.1
-Last updated: Jan 2016
+Node.js version: 7.1
+Last updated: Nov 2016
 
 ---
 
