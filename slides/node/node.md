@@ -281,8 +281,8 @@ LibUv performs, mantains and manages all the io and events in the event pool. ( 
 ### Framework Examples
 
 * KISS Servers: Node core
-* Convention: Express, Restify, Total.js
-* Configuration: Hapi, Kraken
+* Convention: Restify, Total.js
+* Configuration: Hapi, Kraken, Express
 * ORM & Isomorphic: LoopBack, Sails, Meteor*
 
 ^Kraken (not a real framework) actually builds an Express app using config files  
@@ -633,6 +633,23 @@ request.method({
 
 ^Also reference the `increment.js`, `math.js`, and `05-modules-basic.js` files to provide another discussion point and example of how to build modules.
 Walk through the steps in the following files.  (be sure to mirror your display to make it easier)
+
+---
+
+## Observer Pattern
+
+```js
+var Job = function() {}
+require('util').inherits(Job, require('events').EventEmitter)
+job = new Job()
+
+job.on('done', function(timeDone){
+  console.log('Job was pronounced done at', timeDone)
+})
+
+job.emit('done', new Date())
+job.removeAllListeners()
+```
 
 ---
 

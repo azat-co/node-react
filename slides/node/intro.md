@@ -140,10 +140,10 @@ Node.js Day:
 
 Node.js Day:
 
-* 1:00-2:00 Lectures: MongoDB, Express
+* 1:00-2:00 Lectures: MongoDB
 * 2:00-3:00: Workshop
 * 3:00-3:15 Break
-* 3:15-4 Lectures: Meteor
+* 3:15-4 Lectures: Express
 * 4-5 Workshop
 
 ---
@@ -152,8 +152,8 @@ Node.js Day:
 
 React Day:
 
-* 9-11: Lectures
-* 11-12: Workshop
+* 9-11: Lectures: React Foundation
+* 11-12: Workshop: Timer
 * 12-1: Lunch
 
 ---
@@ -162,8 +162,8 @@ React Day:
 
 React Day:
 
-* 1-2: Lectures
-* 2-3: Workshop
+* 1-2: Lectures: React Stack with Redux and React Router
+* 2-3: Workshop: Message Board
 * 3-5: Office hours and individual tracks
 
 ---

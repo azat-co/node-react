@@ -6,8 +6,8 @@ slidenumbers: true
 
 ![inline 70%](images/np-logo120.png)
 
-Node.js version: 5.1
-Last updated: Feb 2016
+Node.js version: 7
+Last updated: Nov 2016
 
 ---
 
@@ -328,24 +328,16 @@ MongoClient.connect(url, function(err, db) {
 
 ---
 
-### Native Driver Alternatives
-
-
-Alternatively, for your own development you could use other mappers, which are available as an extension of the Native Driver:
-
-• Mongoskin: the future layer for node-mongodb-native
-• Mongoose: asynchronous JavaScript driver with optional support for modeling
-• Mongolia: lightweight MongoDB ORM/driver wrapper
-• Monk: Monk is a tiny layer that provides simple yet substantial usability improvements for MongoDB
-usage within Node.js
-
----
 
 ### MongoDB BSON Data Types
 
 Binary JSON, or BSON, it is a special data type which MongoDB utilizes. It is like to JSON in notation, but has support for additional more sophisticated data types.
 
 <http://bsonspec.org>
+
+---
+
+### BSON
 
 Binary: the base64 representation of a binary string
 Date: a 64-bit integer of the ISO-8601 date format with a mandatory time zone field following the template YYYY-MM-DDTHH:mm:ss.mmm<+/-Offset>
@@ -366,6 +358,20 @@ NumberLong: a 64 bit signed integer
 ## Questions and Exercises
 
 ❓🙋:+1:
+
+
+---
+
+### Native Driver Alternatives
+
+• Mongoskin: the future layer for node-mongodb-native
+• Mongoose: asynchronous JavaScript driver with optional support for modeling
+• Mongolia: lightweight MongoDB ORM/driver wrapper
+• Monk: Monk is a tiny layer that provides simple yet substantial usability improvements for MongoDB
+usage within Node.js
+
+^Alternatively, for your own development you could use other mappers, which are available as an extension of the Native Driver
+
 
 ---
 
