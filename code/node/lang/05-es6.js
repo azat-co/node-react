@@ -43,3 +43,8 @@ console.log('increment', f(1), f2(1))
 // Destructuring
 const {email} = accounts[0]
 console.log(email) // tbell@goo.gl
+
+// Interpolation
+
+const str = `${a} is a`
+console.log(str)

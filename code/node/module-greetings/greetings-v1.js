@@ -14,6 +14,6 @@ var sayHelloInTatar = function() {
 console.log('Swedish ' +
   sayHelloInSwedish() +
   ' & English ' +
-  sayHelloInEnglish()
+  sayHelloInEnglish() +
   ' & Tatar ' +
   sayHelloInTatar())
