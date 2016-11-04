@@ -6,8 +6,8 @@ slidenumbers: true
 
 ![inline 70%](images/np-logo120.png)
 
-Node.js version: 5.1
-Last updated: Jan 2016
+Node.js version: 7
+Last updated: Nov 2016
 
 ---
 
@@ -50,7 +50,6 @@ Last updated: Jan 2016
 ---
 
 ## Non-blocking I/O
-
 
 ---
 
@@ -152,7 +151,7 @@ This is a good opportunity to reach out to the class and inquire what they use i
 ### Databases
 
 * mySQL
-* Postgresql
+* PostgreSQL
 * Oracle
 * MS SQL
 * MongoDB
@@ -205,6 +204,35 @@ Many more: http://garann.github.io/template-chooser
 
 * Browser implementations (like Chrome's V8)
 * Node builds on V8 with C++
+
+
+---
+
+Disclaimer: This is NOT a course on JavaScript. Please invest a few days in learning its fundamentals:
+
+* Eloquent JavaScript
+* JavaScript The Good Parts
+* ES6
+* JavaScript Ninja
+* Functional JavaScript
+
+---
+
+# ES6 Sidenote
+
+* Destructuring
+* Const and let
+* Functions
+* Interpolations
+
+More: [Top 10 ES6 Features Every Busy JavaScript Developer Must Know](https://webapplog.com/es6)
+
+---
+
+# Demo
+
+`code/node/lang`
+
 
 ---
 
@@ -281,14 +309,26 @@ Node is not JavaScript, but both JavaScript and Node are ECMAScript.
 
 ---
 
+# Demo
+
+Ways to run Node:
+
+1. Node REPL
+1. Node Eval (`node -e`)
+1. Node Command
+1. Other tools and scripts, e.g., bash script, Makefile, nodemon, node-dev, superviser, pm2, etc.
+
+---
+
 ### `global` Object
 
 The global object is similar to window object in the browser JavaScript.
 
 ```js
-global.require() === require()
 global.process === process
 global.console === console
+global.require === require
+global.module.export === module.exports
 ```
 
 ---
@@ -588,10 +628,10 @@ request.method({
 
 ## Demo
 
-* day1-06-modules-step1.js
-* day1-07-modules-step2.js  (which references the greetings.js file)
+* `code/node/module-basic`
+* `code/node/module-greetings` v2 and v3
 
-^Also reference the increment.js, math.js, and day1-05-modules-basic.js file to provide another discussion point and example of how to build modules.
+^Also reference the `increment.js`, `math.js`, and `05-modules-basic.js` files to provide another discussion point and example of how to build modules.
 Walk through the steps in the following files.  (be sure to mirror your display to make it easier)
 
 ---
@@ -622,11 +662,11 @@ A package manager for Node.
 
 Two ways to install a module:
 
-* Locally: most of your projects' dependencies, e.g., express, request, hapi
+* Locally: most of your projects' dependencies, e.g., `express`, `request`, `hapi`
 
   `npm install module-name`
 
-* Globally: comman-line tools only (mostly), e.g., mocha, grunt, slc
+* Globally: command-line tools only (mostly), e.g., `mocha`, `grunt`, `slc`
 
   `npm install -g module-name`
 
@@ -713,7 +753,7 @@ Therefore, in an empty folder, create package.json or node_modules dir first.
 
 Sample Code:
 
-day1-11-npm-cli.txt
+`code/node/11-npm-cli.txt`
 
 ^Step through installing some libraries and setting up a project with npm init
 
@@ -992,19 +1032,29 @@ response.writeHead(200, {
 
 Sample Code (`code/node`):
 
-1. day1-08-nodejs-app.js
-1. day1-09-nodejs-app2.js
-1. day1-11-nodejs-static-server.js
+1. `code/node/08-nodejs-app.js`
+1. `code/node/09-nodejs-app2.js`
+1. `code/node/static-app-project`
 
 ---
 
-## learnyounode Workshop
+# Testing
 
-1. Pick the first problem
-2. Read instructions
-3. Solve the problem (e.g., create `program.js`)
-4. Verify
-5. Pick the next problem
+ assert:
+
+```js
+const asesrt = require ('assert')
+```
+
+---
+
+# Chai Should
+
+```
+const should = require('chai').should()
+```
+
+`code/node/escape.test.js`
 
 ---
 
@@ -1016,6 +1066,8 @@ Install:
 $ sudo npm install learnyounode -g
 ```
 
+---
+
 Start:
 
 ```
@@ -1024,11 +1076,20 @@ $ learnyounode
 
 ---
 
-
-## Verifying learnyounode
+## Verifying `learnyounode`
 
 Verify solution with:
 
 ```
 $ learnyounode verify program.js
 ```
+
+---
+
+## `learnyounode` Workshop
+
+1. Pick the first problem
+2. Read instructions
+3. Solve the problem (e.g., create `program.js`)
+4. Verify
+5. Pick the next problem
