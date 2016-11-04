@@ -36,15 +36,15 @@
 // typeof new Date() === 'object';
 
 // // The following is confusing. Don't use!
-// typeof new Boolean(true) === 'object'; 
-// typeof new Number(1) === 'object'; 
+// typeof new Boolean(true) === 'object';
+// typeof new Number(1) === 'object';
 // typeof new String("abc") === 'object';
 
 // // Functions
 // typeof function(){} === 'function';
 // typeof Math.sin === 'function';
 
-console.log("Enter any of the typeof calls of the left hand side here, as the example below shows.");
-console.log(typeof Math.sin);
-console.log(typeof true);
-console.log(typeof "some text here.");
+console.log('Enter any of the typeof calls of the left hand side here, as the example below shows.')
+console.log(typeof Math.sin)
+console.log(typeof true)
+console.log(typeof 'some text here.')
