@@ -364,7 +364,7 @@ NumberLong: a 64 bit signed integer
 
 ### Native Driver Alternatives
 
-• Mongoskin: the future layer for node-mongodb-native
+• Mongoskin: lightweight library
 • Mongoose: asynchronous JavaScript driver with optional support for modeling
 • Mongolia: lightweight MongoDB ORM/driver wrapper
 • Monk: Monk is a tiny layer that provides simple yet substantial usability improvements for MongoDB

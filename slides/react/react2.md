@@ -30,10 +30,10 @@ Lists are often use on webpages. They consist of many similar items wrapped in a
 The easiest way to implement a list in React.js is to use array and map(), e.g.,
 
 ```js
-render: function() {
+render() {
   return (
     <ul>
-      {this.props.items.map(function(value, index){
+      {this.props.items.map((value, index) =>{
         return <li>{value}</li>
       })}
     </ul>
@@ -90,14 +90,14 @@ The `getDefaultProps` method is invoked once before the instance is created. The
 ### Default Props Example
 
 ```js
-var Button = React.createClass({
-  getDefaultProps: function () {
-    return {buttonLabel: 'lorem ipsum'}
-  },
-  render: function(){
+class Button extends React.Component {
+  render(){
     return <button >{this.props.buttonLabel}</button>
   }
-})
+}
+Button.defaultProps = {
+  buttonLabel: 'lorem ipsum'
+}
 ```
 
 ---
@@ -107,8 +107,8 @@ var Button = React.createClass({
 This parent component `Content` is missing props on 3 Button components:
 
 ```js
-var Content = React.createClass({
-  render: function() {
+class Content extends React.Component {
+  render() {
     return (
       <div>
         <Button buttonLabel="Start"/>
@@ -118,7 +118,7 @@ var Content = React.createClass({
       </div>
     )
   }
-})
+}
 ```
 
 ---
@@ -177,14 +177,16 @@ Use the `propTypes` property with the object that has props as keys and types as
 This class will have an optional `title` prop of the string type:
 
 ```js
-var Button = React.createClass({
-  propTypes: {
-    title: React.PropTypes.string
-  },
+class Button extends React.Component {
   //...
+}  
+Button.propTypes = {
+  title: React.PropTypes.string
+}
 ```
 
 `/prop-types` or <http://plnkr.co/edit/fK74C6wrQeF5uRSno6Dy?p=preview>
+
 
 ---
 
@@ -194,12 +196,12 @@ var Button = React.createClass({
 To make a prop required just add `isRequired` to the type. This class will have a `handler` prop of function type required:
 
 ```js
-var Button = React.createClass({
-  propTypes: {
-    handler:  React.PropTypes.func.isRequired
-  },
+class Button extends React.Component {
   //...  
-})
+}
+Button.propTypes = {
+  handler:  React.PropTypes.func.isRequired
+}
 ```
 
 ---
@@ -222,8 +224,8 @@ Only the unminifed version of React.js shows the warnings—development mode.
 Just return an instance of `Error`. For example, this code validate email with Regular Expression:
 
 ```js
-email: function(props, propName, componentName) {
-  var emailRegularExpression = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
+email(props, propName, componentName) {
+  let emailRegularExpression = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i
   if (!emailRegularExpression.test(props[propName])) {
     return new Error('Email validation failed!')
   }
@@ -240,165 +242,27 @@ There are many additional types and helper methods. Please refer to the document
 
 ---
 
-# Mixins
+# Higher-Order Components
 
 ---
-
-
-### Defining Mixins
-
-Mixins allows to reuse code. You can share methods between React.js components.
-
----
-
-### Declaring a Mixin
-
-To define a mixin just create an object with properties. For example to set the label state, define the `click` method as well as a mounting event:
 
 ```js
-var Mixin = {
-  getInitialState: function(){
-    return {text: 'lorem ipsum'}
-  },  
-  click: function(e) {
-    console.log(e.target)
-  },
-  componentDidMount: function(){
-    console.log(React.findDOMNode(this))
-  } //...
+const LoadWebsite = (Component) => {
+  class _LoadWebsite extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {label: 'Run'}
+      this.state.handleClick = this.handleClick.bind(this)
+    }
+    // ...
+    render() {
+      console.log(this.state)
+      return <Component {...this.state} {...this.props} />
+    }
+  }
+  return _LoadWebsite
 }
 ```
-
----
-
-### Mixins Usage
-
-To use mixins, simply add the variable enclosed in a `[]` as the value of `mixins` property. For example, a `Component` element will use the properties defined in `Mixin`:
-
-```js
-var Component = React.createClass({
-  mixins: [Mixin],
-  //...
-  render: function() {
-    return <span onClick={this.click}>{this.state.text}</span>
-  }
-})
-```
-
----
-
-
-### Mixins Example
-
-Let's share some properties among several components such as a button, link and an image. Maybe it's a menu or controls that have the same state and functionality, but different rendering.
-
-Source code: `/mixins` or <http://plnkr.co/edit/sNvJIpmh3yONyjWPR48c?p=preview>.
-
----
-
-### Mixin Example
-
-For example, this mixin `RunMixin` has several properties that set the label state, define the `click` method as well as mounting events:
-
-```js
-var RunMixin = {
-  getInitialState: function(){
-    return {label: 'Run'}
-  },
-  componentWillMount: function() {
-    console.log('component will mount')
-  },
-  click: function(e) {
-    var iframe = document.getElementById('frame').src = 'http://reactjs.com'
-  },
-  componentDidMount: function(){
-    console.log(React.findDOMNode(this))
-  }
-}
-```
-
----
-
-
-### Mixins Example
-
-The button component is using the `RunMixin` and magically gets its properties (e.g., `this.click`):
-
-```js
-var Button = React.createClass({
-  mixins: [RunMixin],
-  render: function() {
-    return <button onClick={this.click}>{this.state.label}</button>
-  }
-})
-```
-
----
-
-### Mixins Example
-
-The link component is using the same `RunMixin` and magically gets its properties:
-
-```js
-var Link = React.createClass({
-  mixins: [RunMixin],
-  render: function(){
-    return <a onClick={this.click} href="#">{this.state.label}</a>
-  }
-})
-```
-
----
-
-### Mixins Example
-
-The image component is using the same `RunMixin` and magically gets its properties:
-
-```js
-var Logo = React.createClass({
-  mixins: [RunMixin],
-  render: function(){
-    return <img onClick={this.click} width="40" src="logo.png" href="#"/>
-  }
-})
-```
-
----
-
-### Mixins Example
-
-The parent components renders the elements:
-
-```js
-var Content = React.createClass({
-  render: function() {
-    return (
-      <div>
-        <Button />
-        <br />
-        <br />
-        <Link />
-        <br />
-        <br />
-        <Logo />
-        <br />
-        <br />
-        <iframe id="frame" src=''/>
-      </div>
-    );
-  }
-})
-```
-
----
-
-### Mixins Demo
-
-The three elements will have the same functionality (loads the ifame):
-
-![inline](images/mixins.png)
-
-Note: You cannot use React.js mixins with ES6 classes.
 
 ---
 
@@ -438,15 +302,15 @@ There's an easy way to render all the children with `{this.props.children}`.
 For example, we add a `div` and pass along children elements:
 
 ```js
-var Content = React.createClass({
-  render: function() {
+class Content extends React.Component {
+  render() {
     return (
       <div>
         {this.props.children}
       </div>
     )
   }
-})
+}
 ```
 
 ---
@@ -456,7 +320,7 @@ var Content = React.createClass({
 The parent has children `<h1>` and `<p>`:
 
 ```js
-React.render(
+ReactDOM.render(
   <Content>
     <h1>React.js</h1>
     <p>Rocks</p>
@@ -522,7 +386,7 @@ You can use `onKeyUp` event to capture enter and trigger the submission of the d
 
 
 ```js
-keyup: function (e) {
+keyup(e) {
   if (e.keyCode == 13) return this.sendData()
 },
 ```
@@ -540,7 +404,7 @@ in render:
 Uncontrolled component simply means that the value prop is not set. To capture the changes from an an uncontrolled component, use `onChange`. For example,
 
 ```js
-  render: function() {
+  render() {
     return <div>
       <input type="text"
         onChange={this.change}
@@ -559,15 +423,20 @@ Uncontrolled component simply means that the value prop is not set. To capture t
 This is the `change` method that updates the state:
 
 ```js
-var Content = React.createClass({
-  getInitialState: function(){
-    return {value: ''}
-  },
-  change: function(e) {
+class Content extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {value: ''}
+  }
+  change(e) {
     console.log(e.target.value)
     console.log(React.findDOMNode(this.refs.textbox).value)
     this.setState({value: e.target.value})
-  },
+  }
+  render() {
+    // ...
+  }
+}
 ```
 
 Source code `/uncontrolled` or <http://plnkr.co/edit/p1baE65AwKm52Yh6Lh6K?p=preview>.
@@ -578,10 +447,10 @@ Source code `/uncontrolled` or <http://plnkr.co/edit/p1baE65AwKm52Yh6Lh6K?p=prev
 
 Controlled component means that the value prop is set. Typically it's tied to the `this.state.value`:
 
-```
-render: function() {
-  var value = this.state.value;
-  return <input type="text" value={value} onChange={this.handleChange} />;
+```js
+render() {
+  let value = this.state.value
+  return <input type="text" value={value} onChange={this.handleChange} />
 }
 ```
 
@@ -589,7 +458,7 @@ render: function() {
 
 ### Benefit of Controlled Components
 
-Your element's internal state value will always be the same as the representation. It keeps things simple and in sycn with React philosophy.
+Your element's internal state value will always be the same as the representation. It keeps things simple and in sync with React philosophy.
 
 
 ---
@@ -600,9 +469,9 @@ For example, if we have an account number input field it needs to accept only nu
 
 ```js
   //...
-  change: function(e) {
+  change(e) {
     this.setState({value: e.target.value.replace(/[^0-9]/ig, '')})
-  },
+  }
   //...
 ```
 
@@ -611,12 +480,12 @@ For example, if we have an account number input field it needs to accept only nu
 ### Controlled Component Example
 
 ```js
-var Content = React.createClass({
-  getInitialState: function(){
-    return {value: ''}
-  },
+class Content extends React.Component {
+  constructor() {
+    this.state = {value: ''}
+  }
   //...
-  render: function() {
+  render() {
     return <div>
       Account Number: <input type="text"
         onChange={this.change}
@@ -627,7 +496,7 @@ var Content = React.createClass({
        this.state.value: ''}</span>
     </div>
   }
-})
+}
 //...
 ```
 
@@ -637,16 +506,16 @@ var Content = React.createClass({
 
 This is an anti-pattern because user will never be able to change the value in this controlled component:
 
-```
-render: function() {
+```js
+render() {
    return <input type="text" value="Hello!" />
  }
 ```
 
 The right pattern is to use `defautValue` prop for setting default values:
 
-```
-render: function() {
+```js
+render() {
    return <input type="text" defaultValue="Hello!" />
  }
 ```
@@ -670,7 +539,7 @@ Source Code: `/controlled` or <http://plnkr.co/edit/gfeCl8JPXqgJbG13Oc45?p=previ
 
 You can set the style attribute using JS object literal or JSON and camel case (backgroundImage instead of background-image). For example, the first `{}` is for object and the second `{}` is for rendering:
 
-```
+```html
 <div style={{border:"1px solid blue"}}>
 ```
 
@@ -681,16 +550,16 @@ You can set the style attribute using JS object literal or JSON and camel case (
 Of course, we can define the style as an object and use it in JSX with `{}`:
 
 ```js
-var Content = React.createClass({
-  render: function() {
-    var style = {border: '1px solid blue'}
+class Content extends React.Component {
+  render() {
+    let style = {border: '1px solid blue'}
     return (
       <div style={style}>
         <h1>Hello!</h1>
       </div>
     )
   }
-})
+}
 ```
 
 Source code: `/style` or <http://plnkr.co/edit/8OjJ1vBPH7sN9pNf065G?p=preview>.
@@ -705,7 +574,7 @@ Source code: `/style` or <http://plnkr.co/edit/8OjJ1vBPH7sN9pNf065G?p=preview>.
 ### Summary
 
 * Lists with the `map` method
-* Mixins with the `mixins: [Name]` property
+* HOC is a function to extend a component
 * Controlled vs. uncontrolled components
 * Prop types
 * Refs
@@ -721,41 +590,44 @@ Source code: `/style` or <http://plnkr.co/edit/8OjJ1vBPH7sN9pNf065G?p=preview>.
 
 ---
 
+## Questions and Exercises
+
+❓✋:+1:
+
+---
+
 # Demo
 
 Project: Message Board
 
 ---
 
-### Project: Message Board: React.js + jQuery + Express + MongoDB
+### Project: Message Board: React.js + Axios + Express + MongoDB
 
-Source code: `http://bit.ly/1StYYYy` or <http://bit.ly/1StYYYy>. To run the project:
-
-```
-$ npm install -g gulp
-$ gulp
-```
 
 Navigate to <http://localhost:3000>
 
-
 ---
 
-1. Copy `gulpfile.js` and `package.json`
-1. Run `npm i`
-
-
----
-
-## Questions and Exercises
-
-❓✋:+1:
-
-
----
 
 ## Workshop 🔨💻😁
 
+### Implement Message Board
+
+1. Data: Express, MongoDB, Universal JS, Redux
+1. Setup: JSX, npm, Babel and Webpack
+
+
+---
+
+Solution
+
+
+Source code:  
+
+To run the project:
+
 ```
-$ npm i -g thinking-in-react
+$ npm install
+$ npm start
 ```
