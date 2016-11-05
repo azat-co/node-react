@@ -4,12 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/.bin/webpack",
+    "build-watch": "./node_modules/.bin/webpack -w"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+  "license": "MIT",
+  "babel": {
+    "presets": ["react"]
+  },
+  "devDependencies": {
+    "babel-core": "^6.13.2",
+    "babel-loader": "^6.2.4",
+    "babel-preset-react": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "babel-cli": "^6.9.0",
+    "babel-preset-react": "^6.5.0"
   }
 }
