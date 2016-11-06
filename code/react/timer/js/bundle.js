@@ -63,6 +63,10 @@
 	}
 	
 	class Button extends React.Component {
+	  constructor(props) {
+	    super(props);
+	    this.startTimer = this.startTimer.bind(this);
+	  }
 	  startTimer(event) {
 	    return this.props.startTimer(this.props.time);
 	  }
@@ -72,9 +76,7 @@
 	      {
 	        type: 'button',
 	        className: 'btn-default btn',
-	        onClick: () => {
-	          this.props.startTimer(this.props.time);
-	        } },
+	        onClick: this.startTimer },
 	      this.props.time,
 	      ' seconds'
 	    );
@@ -96,7 +98,8 @@
 	      this.setState({ timeLeft: timeLeft });
 	    }, 1000);
 	    console.log('1: After setInterval');
-	    return this.setState({ timeLeft: timeLeft, timer: timer });
+	    return this.setState({ timeLeft: timeLeft,
+	      timer: timer });
 	  }
 	  render() {
 	    return React.createElement(

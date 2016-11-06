@@ -13,6 +13,10 @@ class Timer extends React.Component {
 }
 
 class Button extends React.Component {
+  constructor(props) {
+    super(props)
+    this.startTimer = this.startTimer.bind(this)
+  }
   startTimer(event) {
     return this.props.startTimer(this.props.time)
   }
@@ -20,7 +24,10 @@ class Button extends React.Component {
     return <button
       type="button"
       className='btn-default btn'
-      onClick={()=>{this.props.startTimer(this.props.time)}}>
+      onClick={this.startTimer}>
+      {
+        // onClick={()=>{this.props.startTimer(this.props.time)}}>
+      }
       {this.props.time} seconds
     </button>
   }
@@ -41,7 +48,8 @@ class TimerWrapper extends React.Component {
       this.setState({timeLeft: timeLeft})
     }, 1000)
     console.log('1: After setInterval')
-    return this.setState({timeLeft: timeLeft, timer: timer})
+    return this.setState({timeLeft: timeLeft,
+      timer: timer})
   }
   render() {
     return (
