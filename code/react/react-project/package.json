@@ -20,6 +20,6 @@
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "babel-cli": "^6.9.0",
-    "babel-preset-react": "^6.5.0"
+    "webpack": "1.13.3"
   }
 }
