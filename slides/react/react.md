@@ -71,8 +71,8 @@ React.js is not a model-view-controller (MVC) framework/library.
 Or hotlink to Facebook CDN:
 
 ```html
-<script src="https://fb.me/react-0.14.7.min.js"></script>
-<script src="https://fb.me/react-dom-0.14.7.min.js"></script>
+<script src="https://unpkg.com/react@15/dist/react.js"></script>
+<script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
 ```
 
 ---
@@ -103,6 +103,16 @@ React.createElement('h1', null, 'Hello world!')
 
 ---
 
+### H1 Element
+
+The following snippet creates the h1 React.js object with content 'Hello world!':
+
+```js
+React.DOM.h1(null, 'Hello world!')
+```
+
+---
+
 ### Rendering
 
 Once the element is created we render it to the DOM element with ID example and renders it:
@@ -110,7 +120,7 @@ Once the element is created we render it to the DOM element with ID example and 
 ```js
 ReactDOM.render(React.createElement('h1', null, 'Hello world!'),
   document.getElementById('example')
-);
+)
 
 ```
 
@@ -188,15 +198,8 @@ $ npm init
 ---
 
 ```
-$ npm i --save react@15.7 react-dom@15
+$ npm i --save react@15 react-dom@15
 ```
-
----
-
-# Got the files?
-
-`react-project/node_modules/react/dist/react.js`
-`react-project/node_modules/react-dom/dist/react-dom.js`
 
 ---
 
@@ -223,6 +226,8 @@ $ npm i --save react@15.7 react-dom@15
   "babel-preset-react": "^6.5.0"
 }
 ```
+
+---
 
 # `package.json` for Babel
 
@@ -265,7 +270,7 @@ module.exports = {
 
 ---
 
-```
+```js
 module: {
   loaders: [
     {
@@ -303,7 +308,7 @@ JSX is a combination of JavaScript and XML. HTML is a form of XML:
 ReactDOM.render(
   <h1>Hello world!</h1>,
   document.getElementById('example')
-);
+)
 ```
 
 ---
@@ -356,7 +361,7 @@ Change `React.createElement` to `<h1>...</h1>`:
 ReactDOM.render(
   <h1>Hello world!</h1>,
   document.getElementById('example')
-);
+)
 ```
 
 ---
@@ -390,41 +395,6 @@ Babel allows you to use ECMAScript 6 now by compiling ES6 code into ES5-friendly
 
 <https://babeljs.io/>
 
----
-
-### Separation of Concerns
-
-Firstly, let's abstract JSX code from `hello-world-jsx.html` HTML into two files:
-
-1. `hello-world.jsx`
-1. `hello-world-jsx-babel.html`
-
-Note: The native JavaScript example can also be split into two files.
-
----
-
-### Code Inclusion
-
-Add this line to the `hello-world-jsx-babel.html` file **right before** closing `body`:
-
-```html
-...
-    <script src="hello-world.js"></script>
-...
-```
-
----
-
-
-# Demo
-
-## Hello World with JSX, Babel and Webpack
-
----
-
-### Pre-processed JSX
-
-Pre-processing JSX is better over run-time because it's faster. Pre-processing is the same as compiling into native JavaScript. You can do it with Babel CLI
 
 ---
 
@@ -465,6 +435,16 @@ var HelloWorld = React.createClass({
 
 ---
 
+```js
+class HelloWorld extends React.Component {
+  render() {
+    return <h1>Hello world!</h1>
+  }
+}
+```
+
+---
+
 ### Refactoring with a HelloWorld Component
 
 The `hello-world-component.jsx` file has a custom component:
@@ -484,6 +464,22 @@ ReactDOM.render(
 )
 ```
 
+---
+
+```js
+class HelloWorld extends React.Component {
+  render() {
+    return (
+      <h1>Hello world!!!</h1>
+    )
+  }
+}
+
+ReactDOM.render(
+  <HelloWorld/>,
+  document.getElementById('example')
+)
+```
 ---
 
 
@@ -517,12 +513,6 @@ Open `hello-world-component.html` and check if you see Hello world!
 ---
 
 ### Auto Update
-
-Each time you change `hello-world-component.jsx`, the tool should update `hello-world.js` with the message:
-
-```
-change hello-world.jsx
-```
 
 ---
 

@@ -596,6 +596,14 @@ Source code: `/style` or <http://plnkr.co/edit/8OjJ1vBPH7sN9pNf065G?p=preview>.
 
 ---
 
+# Redux
+
+---
+
+# React Router
+
+---
+
 # Demo
 
 Project: Message Board
