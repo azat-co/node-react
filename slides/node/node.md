@@ -113,13 +113,13 @@ It turned out for web-based application, single-threaded asynchronous event-loop
 
 ---
 
-![inline](images/non-blocking.png)
-
----
 
 
 ![inline](images/coffeeshop-blocking.jpg)
 
+---
+
+![inline](images/non-blocking.png)
 
 ---
 
@@ -127,13 +127,6 @@ It turned out for web-based application, single-threaded asynchronous event-loop
 
 ---
 
-### Scaling Node Vertically
-
-To scale Node vertically, you can take advantage of multiple CPUs cores or compute units (multi-threading) with clustering (e.g., StrongLoop's PM).
-
-The idea is to have multiple processes from the same code base to listen on the same port for requests.
-
----
 
 ### Integration
 
@@ -290,7 +283,6 @@ Meteor is the only framework here that actually uses the same JS files on both s
 
 ---
 
-![left](images/ryan.png)
 
 > "Everything is a callback...  in Node everything is non-blocking and so it doesn't allow you to just sit there and then return the response. "
 -- Ryan Dahl <http://www.infoq.com/interviews/node-ryan-dahl>
@@ -337,12 +329,6 @@ global.module.export === module.exports
 
 In Node, interaction with the current Node process takes place
 via the `process` object.
-
-As the `process` object is a global, it is accessible from anywhere
-in the application source code.
-
-Note: it is an instance of EventEmitter - logic can therefore be applied
-to the process object via callbacks assigned to specific events.
 
 ---
 
@@ -428,50 +414,6 @@ Note:
 failure
 * Knowing how an application failed allows the developers the means
 to program an appropriate response
-
----
-
-### Child Processes
-
-A child process is a process created by another process.
-
-To have Node applications run other processes, use the `child_process`
-module.
-
----
-
-### Execute a Process
-
-The `exec` function runs a shell command, and invokes a callback
-with references to the child process' standard output and error
-
-```js
-var cp = require('child_process')
-var ps = cp.exec('ps aux', function (err, stdout, stderr) {
-    console.log('STDOUT: ', stdout) // data written to stdout
-    console.log('STDERR: ', stderr) // data written to stderr
-})
-```
-
-^`stderr` does not always show only errors, as there are programs that use it to output additional data.
-
----
-
-### Exec Callback
-
-The `exec` callback also provides an error object as its first argument,
-which can be analyzed in the event process execution fails.
-
-```js
-var ps = cp.exec('nonexistant-command', function (err, stdout, stderr) {
-  if (err) {
-    // stack trace
-    console.log(err.stack)
-    // exit code
-    console.log(err.code)
-  }
-})
-```
 
 ---
 
@@ -847,34 +789,6 @@ $ npm ls -g
 
 ---
 
-### Search
-
-Search for npm modules via the search action
-
-```
-$ npm search [keyword]
-```
-
-This action carries out several tasks
-
-1. Queries the npm Registry
-1. Retrieves search results
-1. Prints it out to standard output
-
----
-
-### Update
-
-To update an npm module, use the update command
-
-```
-$ npm update mysql
-```
-
-Updating only works if the module has already been installed
-
----
-
 ### Remove a module
 
 To remove an npm module
@@ -917,14 +831,6 @@ The private attribute prevents accidental publishing
 }
 ```
 
-
----
-
-# npm Enterprise
-
-^Mention that npm has self-hosted version
-
-
 ---
 
 ## When to use `-g`?
@@ -960,28 +866,9 @@ Types of web content
 
 ---
 
-### Static content
-
-Static content is inclusive of things like image files, static html files that are already put together, and other related content that is stored on some style of drive storage and available for immediate return to a requestor via general response.
+### Node is mostly for Dynamic content
 
 ---
-
-### Dynamic content
-
-Dynamic content, which is the content that is put together - or generated - by code pulling together data from data sources or other means, and then provided to the requestor.
-
----
-
-### I/O
-
-Node.js is excellent at dynamic generation and returning content that is pure I/O in the sense of built or dynamic content.
-
-For static content like image files and related content it is actually a great benefit to hand that off to server software that can handle the specific OS level request.
-
-^Node.js can absolutely handle these requests, but it is often better to offload that to servers that specifically handle this static content like CDNs, OS level call systems, or object stores.
-
----
-
 
 ### The server, request, response objects
 
