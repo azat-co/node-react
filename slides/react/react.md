@@ -1039,5 +1039,7 @@ The `/did-mount` folder.
 # Workshop: Timer
 
 1. Move `Timer` and `Button` to separate files
+1. Create a pause and resume buttons (could be one button as a toggle)
+1. Create a reset button (separate component)
 1. Create a custom timer with an input field (separate component)
 1. Change to minutes, not seconds
