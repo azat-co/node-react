@@ -1035,15 +1035,23 @@ app.use(session({
 
 ---
 
-### Load-balancing
+### Node in Production
 
-* Clusters
-* Nginx
-* HAProxy
-* Varnish
+* Docker: FROM argon
+* Clusters: pm2, slc, nodemon
+* Nginx, HAProxy, Varnish
 
 ---
 
+### Cloud
+
+* FaaS: AWS Lambdas and API Gateways, Azure Functions
+* IaaS: use Linux package managers to install Docker, Git, Node
+* PaaS: Azur App Services, Heroku mostly use Git and `package.json`
+
+For more info on Node in production follow [Node.University](http://node.university)
+
+---
 
 ### Alternatives
 
@@ -1087,3 +1095,12 @@ $ npm install
 
 
 
+---
+
+## Workshop
+
+`code/react/board`
+
+1. Connect to MongoDB
+2. GET and POST for `/messages`
+3. PUT and DELETE for `/messages`

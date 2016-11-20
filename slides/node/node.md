@@ -90,7 +90,7 @@ Class or functional inheritance
 
 ### JavaScript is Optional in Node.js
 
-It's **possible** to use other languages for Node.js that compile into JavaScript, e.g., CoffeeScript, TypeScript, and ClosureScript.
+It's **possible** to use other languages for Node.js that compile into JavaScript, e.g., CoffeeScript, TypeScript, and ClojureScript.
 
 ^JS will still run under the hood.
 
@@ -767,7 +767,7 @@ Code is not exposed to outside and no external dependencies (if self-hosted)
 
 ---
 
-To list curently installed npm modules, use the ls action
+To list currently installed npm modules, use the ls action
 ls lists out modules local to the current Node project
 
 ```bash
@@ -947,7 +947,7 @@ Sample Code (`code/node`):
  assert:
 
 ```js
-const asesrt = require ('assert')
+const assert = require ('assert')
 ```
 
 ---

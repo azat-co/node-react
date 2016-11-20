@@ -647,14 +647,6 @@ class Content extends React.Component {
 
 ---
 
-### Variable Demo
-
-Plnkr allows to edit, run and preview code in the browser.
-
-Variable example: <http://plnkr.co/edit/Aknl72p6aXP71cYLeinj?p=preview>
-
----
-
 # States
 
 States are mutable properties of components meaning they can change. When state changes the corresponding view changes, but everything else in DOM remains intact.
@@ -662,6 +654,7 @@ States are mutable properties of components meaning they can change. When state 
 ---
 
 ### Initial State
+
 
 ```js
 class Content extends React.Component {
@@ -675,7 +668,7 @@ class Content extends React.Component {
 }
 ```
 
---
+---
 
 ### Sidenote: ES5
 
@@ -746,7 +739,7 @@ ReactDOM.render(
 )
 ```
 
-<http://plnkr.co/edit/zwpbx50Rddv01bO4eHgW?p=preview>
+<http://plnkr.co/edit/S2gjlc?p=preview>
 
 ---
 
@@ -774,8 +767,6 @@ class Content extends React.Component {
 }
 ```
 
-<http://plnkr.co/edit/UmgFDUHCQfuGLJ8MvSbM?p=preview>
-
 ---
 
 # Component Events
@@ -800,10 +791,12 @@ React.js is declarative, not imperative. So we won't attach event like we would 
 
 ```js
 class Content extends React.Component {
-  constructor(){
+  constructor(props) {
+    super(props)
     this.state = {counter: 0}
+    this.click = this.click.bind(this)
   }
-  click(event){
+  click(event) {
     this.setState({counter: ++this.state.counter})
   }
   render() {
@@ -835,11 +828,8 @@ The name must match the method of the `Content` component class:
 })
 ```
 
----
 
-# Demo
-
-<http://plnkr.co/edit/sIFuS7ng6GKT45t4FvFR?p=preview>
+<http://plnkr.co/edit/0wbmK9?p=preview>
 
 
 ---
@@ -868,8 +858,10 @@ Provide props to the ClickCounterButton component:
 
 ```js
 class Content extends React.Component {
-  constructor() {
+  constructor(props) {
+    super(props)
     this.state = {counter: 0}
+    this.click = this.click.bind(this)
   }
   click(event) {
     this.setState({counter: ++this.state.counter})
@@ -884,7 +876,7 @@ class Content extends React.Component {
 }
 ```
 
-<http://plnkr.co/edit/0AKIkhI2Nc9btW0TWxHW?p=preview>
+<http://plnkr.co/edit/3HqvdG?p=preview>
 
 
 ---
@@ -926,10 +918,12 @@ The parent component provides props one of which is a handler:
 
 ```js
 class Content extends React.Component {
-  constructor() {
+  constructor(props) {
+    super(props)
     this.state = {counter: 0}
+    this.click = this.click.bind(this)
   }
-  click(event){
+  click(event) {
     this.setState({counter: ++this.state.counter})
   }
   render() {
@@ -943,8 +937,6 @@ class Content extends React.Component {
   }
 }
 ```
-
-<http://plnkr.co/edit/aCC0paSrd4ABKS2v1Blx?p=preview>
 
 ---
 

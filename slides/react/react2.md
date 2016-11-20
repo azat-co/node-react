@@ -49,7 +49,7 @@ This example renders list of menu items and uses Twitter Bootstrap.
 
 ![inline](images/menu.png)
 
-The source code: `/menu` or <http://plnkr.co/edit/dyTMGBoTIXckKediycQl?p=preview>.
+<http://plnkr.co/edit/c47Pfh?p=preview>
 
 ---
 
