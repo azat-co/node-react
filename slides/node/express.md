@@ -739,6 +739,77 @@ Usage: web forms with `action` attribute.
 
 ---
 
+
+### Sessions
+
+```js
+app.use(express.cookiesParser())
+app.use(express.session({ secret: 'notastrongsecret' }))
+```
+
+The session is now accessible via `request.session`
+
+```js
+app.get('...', function (request, response) {
+  var session = request.session
+})
+```
+
+---
+
+### Redis Store with Express
+
+```
+$ npm install connect-redis express-session
+```
+
+```js
+var session = require('express-session'),
+  RedisStore = require('connect-redis')(session)
+
+app.use(session({
+  store: new RedisStore(options),
+  secret: 'keyboard cat'
+}))
+```
+
+---
+
+### Node in Production
+
+* Docker: FROM argon
+* Clusters: pm2, slc, nodemon
+* Nginx, HAProxy, Varnish
+
+---
+
+### Cloud
+
+* FaaS: AWS Lambdas and API Gateways, Azure Functions
+* IaaS: use Linux package managers to install Docker, Git, Node
+* PaaS: Azur App Services, Heroku mostly use Git and `package.json`
+
+For more info on Node in production follow [Node.University](http://node.university)
+
+---
+
+### Alternatives
+
+* Sails
+* LoopBack :point_left:
+* Meteor
+* Hapi
+* Restify
+
+---
+
+### More Alternatives
+
+Registry of hand-picked Node frameworks: [nodeframework.com](http://nodeframework.com)
+
+---
+
+
 ## REST API Example
 
 Code along side!
@@ -868,12 +939,6 @@ curl -H "Content-Type: application/json" -X POST -d '{"message":"hi","name":"Bob
 
 ---
 
-# Official Solution
-
-<https://github.com/azat-co/react/blob/master/ch6/board/index.js>
-
----
-
 
 ### Accessing URL Parameters
 
@@ -935,139 +1000,9 @@ app.delete('/users/:id', function (request, response) {
 
 Note: `del` is [deprecated](https://github.com/jspears/mers/issues/33).
 
----
-
-### HTTP Requests
-
-A client's HTTP request is accessible from within routing handlers
-
-It is the first argument in the handler's callback
-
-```js
-app.get('/users/:id', function (request, response) {
-  // 'req' is the enhanced http request object
-});
-```
-
-Note: access to the request object grants insight into the client's HTTP request, providing data on the request header, body, et al.
 
 ---
 
-### Query Strings
-
-Express converts a URL's query string into JSON
-
-It can be accessed via the request's **query** object
-
-```
-GET http://localhost:3000/?name=Bruce+Wayne&age=40&occupation=Batman
-```
-
-```js
-request.query.name // "Bruce Wayne"
-request.query.age // "40"
-request.query.occupation // "Batman"
-```
-
----
-
-
-### Accessing Form Data
-
-Form data is then accessible via the request's **body** object (ulrencoded)
-
-```
-// POST name=Bruce+Wayne&age=40&occupation=Your+Average+Businessman
-```
-
-```js
-request.body.name
-request.body.age
-request.body.occupation
-```
-
----
-
-### File Uploads
-
-File uploads from web forms (multipart/form-data) can be parsed with these libraries:
-
-* <https://github.com/expressjs/multer>
-* <https://github.com/yahoo/express-busboy>
-* <https://github.com/mscdex/connect-busboy>
-* <https://github.com/andrewrk/node-multiparty>
-
----
-
-### Sessions
-
-```js
-app.use(express.cookiesParser())
-app.use(express.session({ secret: 'notastrongsecret' }))
-```
-
-The session is now accessible via `request.session`
-
-```js
-app.get('...', function (request, response) {
-  var session = request.session
-})
-```
-
-
----
-
-### Redis Store with Express
-
-```
-$ npm install connect-redis express-session
-```
-
-```js
-var session = require('express-session'),
-  RedisStore = require('connect-redis')(session)
-
-app.use(session({
-  store: new RedisStore(options),
-  secret: 'keyboard cat'
-}))
-```
-
----
-
-### Node in Production
-
-* Docker: FROM argon
-* Clusters: pm2, slc, nodemon
-* Nginx, HAProxy, Varnish
-
----
-
-### Cloud
-
-* FaaS: AWS Lambdas and API Gateways, Azure Functions
-* IaaS: use Linux package managers to install Docker, Git, Node
-* PaaS: Azur App Services, Heroku mostly use Git and `package.json`
-
-For more info on Node in production follow [Node.University](http://node.university)
-
----
-
-### Alternatives
-
-* Sails
-* LoopBack :point_left:
-* Meteor
-* Hapi
-* Restify
-
----
-
-### More Alternatives
-
-Registry of hand-picked Node frameworks: [nodeframework.com](http://nodeframework.com)
-
----
 
 # Project Time!
 
@@ -1076,18 +1011,6 @@ Registry of hand-picked Node frameworks: [nodeframework.com](http://nodeframewor
 
 ---
 
-# Free JSON RESTful API
-
-<https://github.com/azat-co/rest-api-express>
-
-Download `express.test.js` and `package.json`
-
-
-```
-$ npm install
-```
-
----
 
 ### Questions and Exercises
 
@@ -1099,8 +1022,9 @@ $ npm install
 
 ## Workshop
 
-`code/react/board`
-
-1. Connect to MongoDB
+1. Create a new folder
+1. Connect to MongoDB in Express
 2. GET and POST for `/messages`
 3. PUT and DELETE for `/messages`
+
+Example: `code/react/board`
