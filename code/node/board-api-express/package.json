@@ -1,0 +1,33 @@
+{
+  "name": "message-board",
+  "version": "2.0.0",
+  "description": "Board message with Express.js, MongoDB and React.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/.bin/node-dev ."
+  },
+  "keywords": [
+    "react.js",
+    "express.js",
+    "mongodb"
+  ],
+  "author": "Azat Mardan",
+  "license": "MIT",
+  "babel": {
+    "presets": [
+      "react"
+    ]
+  },
+  "dependencies": {
+    "body-parser": "^1.13.2",
+    "compression": "^1.5.1",
+    "errorhandler": "^1.4.1",
+    "express": "^4.13.1",
+    "express-validator": "^2.13.0",
+    "mongodb": "^2.2.6",
+    "morgan": "^1.6.1"
+  },
+  "devDependencies": {
+    "node-dev": "^3.1.3"
+  }
+}
