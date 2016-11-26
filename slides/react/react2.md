@@ -593,6 +593,32 @@ Source code: `/style` or <http://plnkr.co/edit/8OjJ1vBPH7sN9pNf065G?p=preview>.
 ---
 
 
+### `componentDidMount()`
+
+The `componentDidMount()` method is invoked when component is inserted into the DOM. You can use this method to perform operations, and/or send AJAX/XHR requests.
+
+---
+
+### `componentDidMount()` Example
+
+Print DOM:
+
+```js
+class Content extends React.Component {
+  componentDidMount() {
+    console.log(ReactDOM.findDOMNode(this))
+  }
+  render() {
+    return (
+      <div/>
+    )
+  }
+}
+```
+
+---
+
+
 # Summary
 
 ---

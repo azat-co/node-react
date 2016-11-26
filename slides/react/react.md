@@ -367,8 +367,8 @@ module.exports = {
 
 # Test Setup
 
-1. `index.html` with `<script src="js/script.js"></script>`
-1. script with `console.log('start')`
+1. `index.html` with `<script src="js/bundle.js"></script>`
+1. script with `console.log('start')` in `jsx/app.jsx`
 1. Run build with `npm run build` (not `npm build`)
 
 `code/react/react-project`
@@ -940,33 +940,6 @@ class Content extends React.Component {
 
 ---
 
-### `componentDidMount()`
-
-The `componentDidMount()` method is invoked when component is inserted into the DOM. You can use this method to perform operations, and/or send AJAX/XHR requests.
-
----
-
-### `componentDidMount()` Example
-
-Print DOM:
-
-```js
-class Content extends React.Component {
-  componentDidMount() {
-    console.log(ReactDOM.findDOMNode(this))
-  }
-  render() {
-    return (
-      <div/>
-    )
-  }
-}
-```
-
-The `/did-mount` folder.
-
----
-
 # Summary
 
 ---
@@ -974,8 +947,7 @@ The `/did-mount` folder.
 ### Summary
 
 * You don't need JSX to work with React.js, but its the recommended syntax for React.js components. JSXTransformer for run-time JSX (development only).
-* React.js can be installed via multiple sources: npm, website, and CDN.
-* JSX type is `text/jsx`: `<script type="text/jsx">`
+* React.js can be installed via multiple sources: npm, website, and CDN
 
 ---
 
@@ -990,8 +962,8 @@ The `/did-mount` folder.
 
 ### Summary (Cont.)
 
-* `React.createClass()` allows to create custom components
-* `React.createClass()` needs `render` method that return other React.js component (always one).
+* `class NAME extends React.Component` allows to create custom components
+* `class NAME extends React.Component` needs `render` method that return other React.js component (always one).
 
 ---
 

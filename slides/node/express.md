@@ -1027,4 +1027,4 @@ Note: `del` is [deprecated](https://github.com/jspears/mers/issues/33).
 2. GET and POST for `/messages`
 3. PUT and DELETE for `/messages`
 
-Example: `code/react/board`
+Example: `code/node/board-express`
