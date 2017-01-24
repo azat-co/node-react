@@ -316,12 +316,12 @@ Ways to run Node:
 
 The global object is similar to window object in the browser JavaScript.
 
-```js
-global.process === process
-global.console === console
-global.require === require
-global.module.export === module.exports
-```
+
+`global.process` same as `process`
+`global.console` same as `console`
+`global.require` same as `require`
+`global.module.exports` same as `module.exports`
+
 
 ---
 
@@ -350,7 +350,7 @@ console.log(process.env)
 
 ### Command-Line Arguments
 
-Shell commands accept arguments to alter their behaviour:
+Shell commands accept arguments to alter their behavior:
 
 ```
 $ echo "Hello World!" // "Hello World" is the argument here

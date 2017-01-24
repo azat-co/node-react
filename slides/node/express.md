@@ -74,7 +74,7 @@ $ npm install -g express-generator
 $ express todo-list-app
 $ cd todo-list-app
 $ npm install
-$ node app
+$ npm start
 ```
 
 ^Go through all aspects of the generated app and point out various features. Specifically talk about app.js and how it abstracts away some things for testing
@@ -87,6 +87,12 @@ $ node app
 * `/public`: contains static files to be served by the embedded server
 * `/routes`: houses custom routing for the embedded server
 * `/views`:  contains templates that can be processed by a template engine
+
+---
+
+* `/package.json`
+* `/www`
+* `/routes/users.js`
 
 ---
 
@@ -598,9 +604,9 @@ The response object can be used to modify an HTTP response before sending it out
 
 ### Express Response Method
 
-* `response.redirect(status, url)`: redirect request
-* `response.send(status, data)`: send response
-* `response.json(status, data):` send JSON and force proper headers
+* `response.redirect(url)`: redirect request
+* `response.send(data)`: send response
+* `response.json(data):` send JSON and force proper headers
 
 ---
 
@@ -627,7 +633,7 @@ app.get('/user/:id', function (request, response) {
     response.status(401)
   }
   // ...
-});
+})
 ```
 
 ---
@@ -687,15 +693,6 @@ response.status(404).end()
 
 ---
 
-### Sessions
-
-HTTP is a stateless protocol - information about a client is not retained over subsequent requests
-
-Use sessions to overcome this problem
-
-Enable the `cookieParser` and `session` middleware to process cookies
-
----
 
 ### Request Body
 
@@ -739,6 +736,16 @@ Usage: web forms with `action` attribute.
 
 ---
 
+
+### Sessions
+
+HTTP is a stateless protocol - information about a client is not retained over subsequent requests
+
+Use sessions to overcome this problem
+
+Enable the `cookieParser` and `session` middleware to process cookies
+
+---
 
 ### Sessions
 
