@@ -330,17 +330,6 @@ More helpers: <https://facebook.github.io/react/docs/top-level-api.html#react.ch
 
 ---
 
-# Forms
-
----
-
-### Form Elements
-
-* input
-* textarea
-* option
-
----
 
 ### Synthetic Event
 
@@ -364,6 +353,19 @@ onClick = {this.handleClick}
 
 
 ---
+
+# Forms
+
+---
+
+### Form Elements
+
+* input
+* textarea
+* option
+
+---
+
 
 ### Form Events
 
@@ -527,8 +529,6 @@ You can access the component's DOM node directly by calling `React.findDOMNode(t
 ```js
 React.findDOMNode(this.refs.email)
 ```
-
-
 
 ---
 
