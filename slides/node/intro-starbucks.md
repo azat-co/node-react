@@ -1,5 +1,8 @@
 footer: © Node Program, 2016
 slidenumbers: true
+theme: Merriweather, 8
+build-lists: true
+
 
 # Node Program
 ## Introduction
@@ -91,26 +94,15 @@ Instructor: Azat Mardan
 
 ### Outcome
 
+* Benefits of Node
+* Core modules
 * Build server-side web applications with the Node.js platform utilizing the JavaScript language
 * Use Node.js framework Express.js
 * Use NoSQL database MongoDB
-* Get familiar with Meteor
-* Grasp React and Isomorphic JavaScript
 
 ^Upon successful completion of this training, participants will be able to do following
 
 
----
-
-### HipChat Room
-
-
-`https://www.hipchat.com/gI1lG5c2q`
-
----
-
-
-## Node Program
 
 ---
 
@@ -159,42 +151,20 @@ Node.js Day:
 
 ### Agenda
 
-React Day:
+2nd Day:
 
-* 9-11: Lectures: React Foundation
-* 11-12: Workshop: Timer
-* 12-1: Lunch
+* Express
+* MongoDB
+* Q&A
 
----
-
-### Agenda
-
-React Day:
-
-* 1-2: Lectures: React Stack with Redux and React Router
-* 2-3: Workshop: Message Board
-* 3-5: Office hours and individual tracks
-
----
-
-## Individual Tracks
-
-1. Deployment
-2. Single-page Application
-3. REST API
-4. Your own project/idea
 
 ---
 
 ## Questions and Exercises
 
-Write them down and ask at the end of the lesson:
-you'll have 5 open frames to ask questions. Use them fully!
+Write them down and ask at the end of the lesson.
 
-:+1:
-
+Specific questons - ask during labs.
 
 
 No workshop for this lesson. 😁
-
----
