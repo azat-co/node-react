@@ -1,5 +1,7 @@
 footer: © Node Program, 2016
 slidenumbers: true
+theme: Merriweather, 8
+build-lists: true
 
 # Node Program
 ## Express.js
