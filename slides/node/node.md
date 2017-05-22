@@ -4,7 +4,7 @@ theme: Merriweather, 8
 build-lists: true
 
 
-# Node Program
+# NodeProgram.com and Node.University
 ## Node Basics
 
 ![inline 70%](images/np-logo120.png)

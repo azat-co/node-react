@@ -1,7 +1,10 @@
-footer: © Node Program, 2016
+footer: © Node Program, Node.University 2016
 slidenumbers: true
+theme: Merriweather, 8
+build-lists: true
 
-# Node Program
+
+# NodeProgram.com and Node.University
 ## Introduction
 
 ![inline 70%](images/np-logo120.png)

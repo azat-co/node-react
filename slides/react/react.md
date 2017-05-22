@@ -276,7 +276,7 @@ $ npm init
 # Install the React Deps!
 
 ```
-$ npm i react@15 react-dom@15 -SE
+$ npm i react@15 react-dom@15 -DE
 ```
 
 ---
@@ -284,7 +284,7 @@ $ npm i react@15 react-dom@15 -SE
 # Install the Babel Deps!
 
 ```
-$ npm i webpack@1 babel-core@6 babel-loader@6 babel-preset-react@6 -SE
+$ npm i webpack@1 babel-core@6 babel-loader@6 babel-preset-react@6 -DE
 ```
 
 ---
@@ -370,6 +370,7 @@ module.exports = {
 1. `index.html` with `<script src="js/bundle.js"></script>`
 1. script with `console.log('start')` in `jsx/app.jsx`
 1. Run build with `npm run build` (not `npm build`)
+1. Run `static` or `http-server` (need to install them first) to test index.html
 
 `code/react/react-project`
 
@@ -380,9 +381,11 @@ module.exports = {
 
 ### JSX Code
 
-Change `React.createElement` to `<h1>...</h1>`:
+Change `React.createElement` to `<h1>...</h1>` (jsx/app.jsx):
 
 ```js
+const React = require('react')
+const ReactDOM = require('react-dom')
 ReactDOM.render(
   <h1>Hello world!</h1>,
   document.getElementById('example')
