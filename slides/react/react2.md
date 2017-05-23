@@ -697,6 +697,12 @@ ch13 of React Quickly on GitHub azat-co/react-quickly
 
 ---
 
+# Redux + GraphQL Example
+
+<https://github.com/azat-co/react-quickly/tree/master/ch15/redux-graphql-netflix>
+
+---
+
 ### Project: Message Board: React.js + Axios + Express + MongoDB
 
 1. Data: Express, MongoDB, Universal JS, Redux
@@ -734,3 +740,12 @@ Navigate to <http://localhost:3000>
 1. Add AJAX call to remove message
 1. Deploy to cloud: Heroku, now.sh, AWS, etc.
 
+---
+
+# Learning never stops
+
+<https://node.university> - The Ultimate Online Resource for Full Stack JavaScript (Node.js, React.js, AWS, Docker and JavaScript)
+
+Email: hi at azat dot co for a free month of Node University
+
+PS: Ask if you can expense the subscription on your company 😄
