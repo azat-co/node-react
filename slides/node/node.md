@@ -1,4 +1,4 @@
-footer: © Node Program, 2016
+footer: © Node Program, 2018
 slidenumbers: true
 theme: Merriweather, 8
 build-lists: true
@@ -8,9 +8,6 @@ build-lists: true
 ## Node Basics
 
 ![inline 70%](images/np-logo120.png)
-
-Node.js version: 7
-Last updated: Nov 2016
 
 ---
 
@@ -85,7 +82,7 @@ Don't use Node.js for CPU-intensive tasks. Hand them over to other workers.
 * Callback Hell
 * Prototypal inheritance
 
-^Generators, promises, async  
+^Generators, promises, async
 Class or functional inheritance
 ^ ES6 will fix a lot of them
 
@@ -247,8 +244,8 @@ More: [Top 10 ES6 Features Every Busy JavaScript Developer Must Know](https://we
 * LibEio: Async I/O
 * LibUv: Abstraction on libEio, libev, c-ares (for DNS) & iocp (for Windows)
 
-^It's written originally for `*`nix systems. Libev provides a simple yet optimized event loop for the process to run on. You can read more about libev here.  
-It handles file descriptors, data handlers, sockets etc. You can read more about it here here.  
+^It's written originally for `*`nix systems. Libev provides a simple yet optimized event loop for the process to run on. You can read more about libev here.
+It handles file descriptors, data handlers, sockets etc. You can read more about it here here.
 LibUv performs, mantains and manages all the io and events in the event pool. ( in case of libeio threadpool ). You should check out Ryan Dahl's tutorial on libUv. That will start making more sense to you about how libUv works itself and then you will understand how node.js works on the top of libuv and v8.
 
 ---
@@ -281,7 +278,7 @@ LibUv performs, mantains and manages all the io and events in the event pool. ( 
 * Configuration: Hapi, Kraken, Express
 * ORM & Isomorphic: LoopBack, Sails, Meteor*
 
-^Kraken (not a real framework) actually builds an Express app using config files  
+^Kraken (not a real framework) actually builds an Express app using config files
 Meteor is the only framework here that actually uses the same JS files on both sides
 
 ---
@@ -309,9 +306,9 @@ Node is not JavaScript, but both JavaScript and Node are ECMAScript.
 Ways to run Node:
 
 1. Node REPL
-1. Node Eval (`node -e`)
-1. Node Command
-1. Other tools and scripts, e.g., bash script, Makefile, nodemon, node-dev, superviser, pm2, etc.
+2. Node Eval (`node -e`)
+3. Node Command
+4. Other tools and scripts, e.g., bash script, Makefile, nodemon, node-dev, superviser, pm2, etc.
 
 ---
 
